@@ -7,30 +7,26 @@
 </head><body><div class="container">
 <header class="header">
   <a class="brand" href="index.html" aria-label="Vrijeplek home">
-  <svg class="brand-logo" viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#3B82F6"/>
-        <stop offset="100%" stop-color="#06B6D4"/>
-      </linearGradient>
-    </defs>
-    <!-- woordmerk -->
-    <text x="220" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
-          font-size="140" font-weight="800" fill="#0F172A">Vrijeplek</text>
-    <!-- pin als punt op de "i" -->
-    <g transform="translate(0,0)">
-      <!-- pin-positie (ongeveer boven de i) -->
+    <!-- INLINE oceaan-logo, werkt zonder bestanden -->
+    <svg class="brand-logo" viewBox="0 0 1200 320" aria-hidden="true" focusable="false"
+         style="height:28px;width:auto;display:block">
+      <defs>
+        <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3B82F6"/>
+          <stop offset="100%" stop-color="#06B6D4"/>
+        </linearGradient>
+      </defs>
+      <!-- woordmerk -->
+      <text x="220" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+            font-size="140" font-weight="800" fill="#0F172A">Vrijeplek</text>
+      <!-- pin als punt op de "i" -->
       <g transform="translate(495,142)">
-        <!-- head -->
         <circle cx="0" cy="-6" r="24" fill="url(#og)"/>
-        <!-- tail -->
         <path d="M-17,20 Q0,30 0,62 Q0,30 17,20 Z" fill="url(#og)"/>
-        <!-- V-uitspaarding -->
         <path d="M-14,-12 L0,6 L14,-12 L0,20 Z" fill="#FFFFFF"/>
       </g>
-    </g>
-  </svg>
-</a>
+    </svg>
+  </a>
 
   <nav class="nav">
     <a href="index.html">Home</a>
