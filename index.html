@@ -1,143 +1,51 @@
 <!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vrijeplek.be — Boek lokaal, zonder gedoe.</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Vrijeplek — boek lokaal, zonder gedoe</title>
 
-  <!-- Cache-bust je stylesheet (blijft werken met je bestaande styles.css) -->
-  <link rel="stylesheet" href="styles.css?v=ocean7">
+  <!-- Ocean styles (cache-bust) -->
+  <link rel="stylesheet" href="styles.css?v=ocean9">
   <link rel="icon" href="favicon-ocean.svg" type="image/svg+xml">
   <meta name="theme-color" content="#3B82F6">
 
-  <!-- Inter font (optioneel) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Ocean thema + zichtbare header-stijlen (inline zodat je het zeker ziet) -->
+  <!-- Page-specific polish (kleine, veilige aanvullingen) -->
   <style>
-    :root{
-      --bg:#f7fbff; --surface:#ffffff; --text:#0f172a; --muted:#475569;
-      --accent:#3b82f6; --accent-2:#06b6d4;
-      --stroke:#e2e8f0; --shadow:0 18px 40px rgba(15,23,42,.10); --radius:16px;
-    }
-    body{ background:var(--bg); color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; margin:0; }
-    .container{ max-width:1100px; margin:0 auto; padding:20px; }
-    .header{
-      display:flex; align-items:center; justify-content:space-between;
-      position:sticky; top:0; z-index:50; background:rgba(247,251,255,.95);
-      border-bottom:1px solid var(--stroke); padding:8px 0;
-    }
-    .brand-logo{ height:28px; width:auto; display:block; }
-    .nav{ display:flex; gap:10px; align-items:center; }
-    .nav a{ color:var(--text); text-decoration:none; padding:8px 10px; border-radius:10px; }
-    .button{ height:40px; border-radius:12px; border:1px solid var(--stroke); padding:0 14px; background:#fff; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; }
-    .button.ghost{ background:#fff; }
-    .nav a.cta{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; box-shadow:var(--shadow);
-    }
-    .hero{
-      margin:18px 0 20px; border-radius:22px; background:linear-gradient(180deg,#fff,#fff8);
-      border:1px solid var(--stroke); box-shadow:var(--shadow); padding:28px 24px;
-    }
-    .hero h1{ margin:0 0 6px 0; font-size:40px; letter-spacing:-.02em; }
-    .hero p{ margin:0; color:var(--muted); }
-    .badge{ display:inline-flex; gap:8px; align-items:center; background:#fff5; border:1px solid var(--stroke); padding:8px 12px; border-radius:999px; font-weight:600; margin-bottom:10px; }
-    .searchbar{ margin-top:16px; display:grid; grid-template-columns:1.4fr 1fr 1fr auto; gap:10px; }
-    .input, select{ height:46px; border-radius:12px; border:1px solid var(--stroke); padding:0 12px; background:#fff; color:var(--text); }
-    .button.primary{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:0; color:#fff; }
-    .kicker{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:16px 0 8px; }
-    .cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-    .cat{ display:flex; align-items:center; gap:10px; padding:14px; border:1px solid var(--stroke); border-radius:14px; background:#fff; box-shadow:var(--shadow); text-decoration:none; color:var(--text); }
-    .card{ background:#fff; border:1px solid var(--stroke); border-radius:20px; box-shadow:var(--shadow); padding:16px; }
-    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .footer{ margin:40px 0 16px; color:var(--muted); font-size:14px; text-align:center; }
-    @media (max-width:980px){ .searchbar{ grid-template-columns:1fr } .cat-grid{ grid-template-columns:1fr 1fr } .grid{ grid-template-columns:1fr } }
-  </style>
-</head>
-<body>
-  <div class="container">
+    /* compacte basistypo */
+    html,body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;font-size:15px;line-height:1.45;margin:0;background:var(--bg);color:var(--text)}
+    .container{max-width:1120px;margin:0 auto;padding:18px}
 
-    <header class="header">
-      <!-- DEBUG: haal later gerust weg; moet nú zichtbaar zijn -->
-      <div style="background:#fff3cd;color:#7a5b00;padding:6px 10px;border:1px solid #ffe08a;border-radius:8px;margin-right:10px">
-        <strong>DEBUG:</strong> Ocean header (v7)
-      </div>
+    /* HEADER LAYOUT: brand | nav(center) | actions(right) */
+    .header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.65));backdrop-filter:saturate(130%) blur(10px);border-bottom:1px solid var(--stroke)}
+    .headerbar{display:grid;grid-template-columns:220px 1fr 260px;gap:12px;align-items:center;padding:10px 0}
+    .brand-logo{height:24px;display:block;width:auto}
+    .topline{position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
 
-      <a class="brand" href="index.html" aria-label="Vrijeplek home">
-        <!-- Inline oceaan-logo met pin als 'i'-punt -->
-        <svg class="brand-logo" viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#3B82F6"/>
-              <stop offset="100%" stop-color="#06B6D4"/>
-            </linearGradient>
-          </defs>
-          <text x="220" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
-                font-size="140" font-weight="800" fill="#0F172A">Vrijeplek</text>
-          <g transform="translate(495,142)">
-            <circle cx="0" cy="-6" r="24" fill="url(#og)"/>
-            <path d="M-17,20 Q0,30 0,62 Q0,30 17,20 Z" fill="url(#og)"/>
-            <path d="M-14,-12 L0,6 L14,-12 L0,20 Z" fill="#FFFFFF"/>
-          </g>
-        </svg>
-      </a>
+    /* NAV center pills */
+    .nav-center{justify-self:center;display:flex;gap:8px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--stroke);color:var(--text);text-decoration:none}
+    .pill:hover{box-shadow:var(--shadow)}
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="voor-bedrijven.html">Voor bedrijven</a>
-        <a href="login.html" class="button ghost" id="loginLink">Login</a>
-        <a href="#" class="button ghost" id="logoutLink" style="display:none">Uitloggen</a>
-        <a href="signup.html" class="cta">Aanmelden</a>
-      </nav>
-    </header>
+    /* Right-side actions */
+    .actions{justify-self:end;display:flex;gap:8px;align-items:center}
+    .button{height:40px;border-radius:12px;border:1px solid var(--stroke);padding:0 12px;background:#fff;font-weight:700;display:inline-flex;align-items:center}
+    .button.ghost{background:#fff}
+    .cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);text-decoration:none}
 
-    <section class="hero">
-      <span class="badge">3 maanden gratis — daarna €9/maand · maandelijks opzegbaar</span>
-      <h1>Boek lokaal, zonder gedoe</h1>
-      <p>Zoek, kies en reserveer vrije momenten in je buurt. Horeca, zorg en diensten — helder en snel.</p>
-      <div class="searchbar">
-        <input class="input" type="search" id="q" placeholder="Zoek bv. ‘Bakkerij Emma’ of ‘Horeca, Genk’" />
-        <select id="cat">
-          <option value="">Alle categorieën</option>
-          <option>Horeca</option>
-          <option>Gezondheidszorg</option>
-          <option>Diensten</option>
-          <option>Anders</option>
-        </select>
-        <input class="input" id="loc" placeholder="Locatie (stad of postcode)" />
-        <button class="button primary" onclick="handleSearch()">Zoeken</button>
-      </div>
-    </section>
+    /* HERO */
+    .hero{margin:16px 0 18px;border-radius:18px;position:relative;overflow:hidden;border:1px solid var(--stroke);box-shadow:var(--shadow);padding:22px 20px;
+      background:
+        radial-gradient(1200px 1200px at 100% 0%, rgba(6,182,212,.12), transparent 60%),
+        radial-gradient(900px 900px at 0% 100%, rgba(59,130,246,.12), transparent 55%),
+        linear-gradient(180deg,#fff,#fff8);}
+    h1{font-size:30px;letter-spacing:-.02em;margin:0 0 6px}
+    .hero-sub{color:var(--muted);margin:0}
 
-    <section>
-      <div class="kicker">Populair</div>
-      <div class="cat-grid">
-        <a class="cat" href="results.html?cat=Horeca"><b>Horeca</b><span class="tag">incl. hotels/B&amp;B, pizzeria</span></a>
-        <a class="cat" href="results.html?cat=Gezondheidszorg"><b>Gezondheidszorg</b></a>
-        <a class="cat" href="results.html?cat=Diensten"><b>Diensten</b></a>
-        <a class="cat" href="results.html?cat=Anders"><b>Anders</b></a>
-      </div>
-    </section>
-
-    <section>
-      <div class="kicker">Voor bedrijven</div>
-      <div class="card">
-        <h3>Laat je zaak direct boeken</h3>
-        <p>Beheer beschikbaarheid, toon je Google Reviews en word gevonden in je buurt. Vaste prijs — geen commissie.</p>
-        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="button ghost" href="voor-bedrijven.html">Meer info</a>
-          <a class="button primary" href="signup.html">Meteen aanmelden</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">© <span id="year"></span> Vrijeplek.be · <a href="terms.html">Algemene voorwaarden</a></footer>
-  </div>
-
-  <!-- scripts -->
-  <script defer src="/.netlify/identity/widget.js"></script>
-  <script defer src="app.js"></script>
-</body>
-</html>
+    /* Zoekbalk */
+    .searchbar{margin-top:14px;display:grid;grid-template-columns:1.5fr 1f
