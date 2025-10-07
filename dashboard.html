@@ -1,0 +1,65 @@
+<!doctype html><html lang="nl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard — Vrijeplek.be</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head><body><div class="container">
+<header class="header">
+  <div class="brand"><div class="logo"></div> Vrijeplek<span style="color:#64748b">.be</span></div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="voor-bedrijven.html">Voor bedrijven</a>
+    <a href="login.html" class="button ghost" id="loginLink">Login</a>
+    <a href="#" class="button ghost" id="logoutLink" style="display:none">Uitloggen</a>
+    <a href="signup.html" class="cta">Aanmelden</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <aside class="sidebar">
+    <div class="card">
+      <h3>Jouw profiel</h3>
+      <p><b>Email:</b> <span id="uEmail">-</span></p>
+      <a id="toBilling" class="button" href="#">Facturen</a>
+    </div>
+    <div class="card">
+      <h3>Snelle acties</h3>
+      <button class="button primary" onclick="addSlot()">+ Tijdslot</button>
+      <button class="button" onclick="syncSlots()">Vernieuw</button>
+    </div>
+  </aside>
+  <main>
+    <div class="card">
+      <h2>Agenda (vrije slots)</h2>
+      <table class="table" id="slotsTable"><tr><td>Laden…</td></tr></table>
+    </div>
+    <div class="card">
+      <h2>Profiel</h2>
+      <div class="form">
+        <div class="row">
+          <input class="input" id="company" placeholder="Bedrijfsnaam" />
+          <input class="input" id="vat" placeholder="BTW-nummer" />
+        </div>
+        <div class="row">
+          <select class="input" id="category">
+            <option>Horeca</option><option>Gezondheidszorg</option><option>Diensten</option><option>Anders</option>
+          </select>
+          <input class="input" id="reviews" placeholder="Google Review URL" />
+        </div>
+        <div class="row">
+          <input class="input" id="address" placeholder="Adres" />
+          <input class="input" id="phone" placeholder="Telefoon" />
+        </div>
+        <textarea class="input" id="bio" rows="4" placeholder="Korte beschrijving (max. 240)"></textarea>
+        <button class="button primary" onclick="saveProfile()">Profiel opslaan</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">© <span id="year">2025</span> Vrijeplek.be · <a href="terms.html">Algemene voorwaarden</a></footer>
+</div>
+<script defer src="/.netlify/identity/widget.js"></script>
+<script defer src="app.js"></script>
+</body></html>

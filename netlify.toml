@@ -1,0 +1,19 @@
+
+[build]
+  publish = "."
+  functions = "functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["stripe", "nodemailer", "node-fetch"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

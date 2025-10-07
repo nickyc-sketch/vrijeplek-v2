@@ -1,0 +1,63 @@
+<!doctype html><html lang="nl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Vrijeplek.be — Boek lokaal, zonder gedoe.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head><body><div class="container">
+<header class="header">
+  <div class="brand"><div class="logo"></div> Vrijeplek<span style="color:#64748b">.be</span></div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="voor-bedrijven.html">Voor bedrijven</a>
+    <a href="login.html" class="button ghost" id="loginLink">Login</a>
+    <a href="#" class="button ghost" id="logoutLink" style="display:none">Uitloggen</a>
+    <a href="signup.html" class="cta">Aanmelden</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="badge">3 maanden gratis — daarna €9/maand · maandelijks opzegbaar</span>
+  <h1>Boek lokaal, zonder gedoe</h1>
+  <p>Zoek, kies en reserveer vrije momenten in je buurt. Horeca, zorg en diensten — helder en snel.</p>
+  <div class="searchbar">
+    <input class="input" type="search" id="q" placeholder="Zoek bv. ‘Bakkerij Emma’ of ‘Horeca, Genk’" />
+    <select id="cat">
+      <option value="">Alle categorieën</option>
+      <option>Horeca</option>
+      <option>Gezondheidszorg</option>
+      <option>Diensten</option>
+      <option>Anders</option>
+    </select>
+    <input class="input" id="loc" placeholder="Locatie (stad of postcode)" />
+    <button class="button primary" onclick="handleSearch()">Zoeken</button>
+  </div>
+</section>
+
+<section style="margin-top:20px">
+  <div class="kicker">Populair</div>
+  <div class="cat-grid">
+    <a class="cat" href="results.html?cat=Horeca"><b>Horeca</b><span class="tag">incl. hotels/B&B, pizzeria</span></a>
+    <a class="cat" href="results.html?cat=Gezondheidszorg"><b>Gezondheidszorg</b></a>
+    <a class="cat" href="results.html?cat=Diensten"><b>Diensten</b></a>
+    <a class="cat" href="results.html?cat=Anders"><b>Anders</b></a>
+  </div>
+</section>
+
+<section style="margin-top:20px">
+  <div class="kicker">Voor bedrijven</div>
+  <div class="card">
+    <h3>Laat je zaak direct boeken</h3>
+    <p>Beheer beschikbaarheid, toon je Google Reviews en word gevonden in je buurt. Vaste prijs — geen commissie.</p>
+    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="button ghost" href="voor-bedrijven.html">Meer info</a>
+      <a class="button primary" href="signup.html">Meteen aanmelden</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">© <span id="year">2025</span> Vrijeplek.be · <a href="terms.html">Algemene voorwaarden</a></footer>
+</div>
+<script defer src="/.netlify/identity/widget.js"></script>
+<script defer src="app.js"></script>
+</body></html>
