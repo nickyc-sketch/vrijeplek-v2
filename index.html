@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Vrijeplek — boek lokaal, zonder gedoe</title>
 
-  <!-- Ocean styles (cache-bust) -->
+  <!-- cache-bust je stylesheet als je die gebruikt; deze pagina werkt ook zonder -->
   <link rel="stylesheet" href="styles.css?v=ocean9">
   <link rel="icon" href="favicon-ocean.svg" type="image/svg+xml">
   <meta name="theme-color" content="#3B82F6">
@@ -15,26 +15,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Page-specific polish (kleine, veilige aanvullingen) -->
+  <!-- OCEAN THEMA + layout (inline; geen externe files nodig) -->
   <style>
-    /* compacte basistypo */
+    :root{
+      --bg:#f7fbff; --surface:#ffffff; --text:#0f172a; --muted:#475569;
+      --accent:#3b82f6; --accent-2:#06b6d4;
+      --stroke:#e2e8f0; --shadow:0 18px 40px rgba(15,23,42,.10); --radius:14px;
+      --glass: rgba(255,255,255,.6);
+    }
     html,body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;font-size:15px;line-height:1.45;margin:0;background:var(--bg);color:var(--text)}
+    h1{font-size:30px;letter-spacing:-.02em;margin:0 0 6px}
+    h2{font-size:20px;margin:0 0 8px}
+    p{margin:0 0 8px}
     .container{max-width:1120px;margin:0 auto;padding:18px}
 
-    /* HEADER LAYOUT: brand | nav(center) | actions(right) */
+    /* HEADER: brand | nav (gecentreerd) | actions */
     .header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.65));backdrop-filter:saturate(130%) blur(10px);border-bottom:1px solid var(--stroke)}
     .headerbar{display:grid;grid-template-columns:220px 1fr 260px;gap:12px;align-items:center;padding:10px 0}
-    .brand-logo{height:24px;display:block;width:auto}
     .topline{position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
+    .brand-logo{height:24px;display:block;width:auto}
 
-    /* NAV center pills */
     .nav-center{justify-self:center;display:flex;gap:8px;flex-wrap:wrap}
     .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--stroke);color:var(--text);text-decoration:none}
     .pill:hover{box-shadow:var(--shadow)}
 
-    /* Right-side actions */
     .actions{justify-self:end;display:flex;gap:8px;align-items:center}
-    .button{height:40px;border-radius:12px;border:1px solid var(--stroke);padding:0 12px;background:#fff;font-weight:700;display:inline-flex;align-items:center}
+    .button{height:40px;border-radius:12px;border:1px solid var(--stroke);padding:0 12px;background:#fff;font-weight:700;display:inline-flex;align-items:center;text-decoration:none;color:var(--text)}
     .button.ghost{background:#fff}
     .cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);text-decoration:none}
 
@@ -44,8 +50,167 @@
         radial-gradient(1200px 1200px at 100% 0%, rgba(6,182,212,.12), transparent 60%),
         radial-gradient(900px 900px at 0% 100%, rgba(59,130,246,.12), transparent 55%),
         linear-gradient(180deg,#fff,#fff8);}
-    h1{font-size:30px;letter-spacing:-.02em;margin:0 0 6px}
     .hero-sub{color:var(--muted);margin:0}
 
-    /* Zoekbalk */
-    .searchbar{margin-top:14px;display:grid;grid-template-columns:1.5fr 1f
+    /* Zoekbalk (past altijd) */
+    .searchbar{margin-top:14px;display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:8px}
+    .input, select{height:40px;border-radius:10px;border:1px solid var(--stroke);padding:0 10px;background:#fff;color:var(--text)}
+    .button.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:#fff}
+
+    /* Snelkeuze */
+    .kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:12px 0 8px}
+    .chip-row{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid var(--stroke);border-radius:999px;background:#fff;text-decoration:none;color:var(--text)}
+    .chip:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow);padding:14px}
+    .footer{margin:28px 0 14px;color:var(--muted);font-size:13px;text-align:center}
+
+    @media (max-width:980px){
+      .container{padding:14px}
+      .headerbar{grid-template-columns:1fr}
+      .nav-center{justify-content:flex-start}
+      .actions{justify-self:start}
+      .searchbar{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .brand-logo{height:22px}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="topline" aria-hidden="true"></div>
+    <div class="container headerbar">
+      <!-- Brand (inline ocean wordmark) -->
+      <a class="brand" href="index.html" aria-label="Vrijeplek home">
+        <svg class="brand-logo" viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <text x="220" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+                font-size="120" font-weight="800" fill="#0F172A">Vrijeplek</text>
+          <g transform="translate(495,136)">
+            <circle cx="0" cy="-6" r="20" fill="url(#og)"/>
+            <path d="M-14,18 Q0,26 0,52 Q0,26 14,18 Z" fill="url(#og)"/>
+            <path d="M-12,-10 L0,6 L12,-10 L0,18 Z" fill="#FFFFFF"/>
+          </g>
+        </svg>
+      </a>
+
+      <!-- NAV (gecentreerd) -->
+      <nav class="nav-center" aria-label="Hoofdnavigatie">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="voor-bedrijven.html">Voor bedrijven</a>
+        <a class="pill" href="terms.html">Voorwaarden</a>
+      </nav>
+
+      <!-- Actions rechts -->
+      <div class="actions">
+        <a href="login.html" class="button ghost" id="loginLink">Login</a>
+        <a href="#" class="button ghost" id="logoutLink" style="display:none">Uitloggen</a>
+        <a href="signup.html" class="cta">Aanmelden</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- HERO met zoek -->
+    <section class="hero">
+      <h1 id="heroTitle">Afspraken bij jou in de buurt</h1>
+      <p class="hero-sub">Zoek, kies en reserveer vrije momenten. Horeca, Wellness &amp; Beauty, Gezondheidszorg en meer.</p>
+
+      <div class="searchbar">
+        <input class="input" type="search" id="q" placeholder="Zoek bv. ‘Bakkerij Emma’ of ‘Horeca, Genk’" />
+        <select id="cat">
+          <option value="">Alle categorieën</option>
+          <option>Horeca</option>
+          <option>Wellness &amp; Beauty</option>
+          <option>Gezondheidszorg</option>
+          <option>Diensten</option>
+          <option>Anders</option>
+        </select>
+        <input class="input" id="loc" placeholder="Locatie (stad of postcode)" />
+        <button class="button primary" onclick="handleSearch()">Zoeken</button>
+      </div>
+    </section>
+
+    <!-- Nu boeken / snelkeuze -->
+    <section>
+      <div class="kicker">Nu boeken</div>
+      <div class="chip-row">
+        <a class="chip" href="results.html?cat=Horeca">Horeca</a>
+        <a class="chip" href="results.html?cat=Wellness%20%26%20Beauty">Wellness &amp; Beauty</a>
+        <a class="chip" href="results.html?cat=Gezondheidszorg">Gezondheidszorg</a>
+        <a class="chip" href="results.html?cat=Diensten">Diensten</a>
+        <a class="chip" href="results.html?cat=Anders">Anders</a>
+      </div>
+    </section>
+
+    <!-- Info-kaarten -->
+    <section style="margin-top:14px">
+      <div class="grid">
+        <div class="card">
+          <h2>Voor bedrijven</h2>
+          <p>Laat klanten jouw vrije plekken meteen boeken. Vaste prijs — geen commissie.</p>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="button ghost" href="voor-bedrijven.html">Meer info</a>
+            <a class="button primary" href="signup.html">Meteen aanmelden</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Waarom Vrijeplek?</h2>
+          <p>Eenvoudig dashboard, lokale vindbaarheid, koppeling naar Google Reviews, en heldere prijzen.</p>
+        </div>
+        <div class="card">
+          <h2>Prijs</h2>
+          <p>€9/maand of €80/jaar · 3 maanden gratis na eerste €9 · maandelijks opzegbaar.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">© <span id="year"></span> Vrijeplek.be · <a href="terms.html">Algemene voorwaarden</a></footer>
+
+  <!-- Scripts -->
+  <script defer src="/.netlify/identity/widget.js"></script>
+  <script defer src="app.js"></script>
+  <script>
+    // jaar
+    document.addEventListener('DOMContentLoaded', ()=>{ const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); });
+
+    // fallback zoeken
+    function handleSearch(){
+      try{ if (typeof window.handleSearchExternal==='function') return window.handleSearchExternal(); }catch(e){}
+      const q=(document.getElementById('q')||{}).value||'';
+      const cat=(document.getElementById('cat')||{}).value||'';
+      const loc=(document.getElementById('loc')||{}).value||'';
+      const p=new URLSearchParams({q,cat,loc});
+      window.location.href='results.html?'+p.toString();
+    }
+
+    // Persoonlijke hero (stad via geolocatie, optioneel)
+    (function personalizeHero(){
+      const title=document.getElementById('heroTitle'); if(!title||!navigator.geolocation) return;
+      const setNear=t=>title.textContent=t;
+      navigator.geolocation.getCurrentPosition(async pos=>{
+        try{
+          const {latitude:lat,longitude:lon}=pos.coords;
+          const res=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+          if(res.ok){
+            const data=await res.json();
+            const city=data.address&&(data.address.city||data.address.town||data.address.village||data.address.municipality);
+            if(city){ setNear(`Afspraken bij jou in ${city}`); return; }
+          }
+          setNear('Afspraken bij jou in de buurt');
+        }catch(e){ setNear('Afspraken bij jou in de buurt'); }
+      }, ()=>setNear('Afspraken bij jou in de buurt'), {timeout:5000});
+    })();
+  </script>
+</body>
+</html>
+
