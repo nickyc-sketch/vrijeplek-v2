@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aanmelden voor bedrijven — Vrijeplek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header with simple brand -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Intro hero section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Aanmelden voor bedrijven</h1>
+        <p class="sub">Sluit je aan bij Vrijeplek en bereik een nieuw publiek. Vul lege momenten in je agenda met last‑minute boekingen en vergroot je omzet zonder extra marketingkosten.</p>
+      </div>
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- Voordelen en oproep om partner te worden -->
+    <section class="section">
+      <div class="container">
+        <h2>Waarom partner worden?</h2>
+        <p>Als partner profiteer je van extra zichtbaarheid en een continue stroom van last‑minute boekingen. Wij bieden:</p>
+        <ul>
+          <li><strong>Bereik het juiste publiek:</strong> jouw beschikbare plekken worden getoond aan mensen die op dat moment actief op zoek zijn naar jouw dienstverlening.</li>
+          <li><strong>Geen extra marketingkosten:</strong> wij verzorgen de promotie en brengen je bij het juiste publiek – je betaalt alleen een laag vast abonnement.</li>
+          <li><strong>Meer klanten zonder extra werk:</strong> vul lege tijdvakken in je agenda op met last‑minute boekingen en haal zo meer omzet uit dezelfde dag.</li>
+          <li><strong>Volledige controle:</strong> bepaal zelf welke tijdvakken je openstelt en beheer ze gemakkelijk via onze online kalender.</li>
+          <li><strong>Persoonlijke ondersteuning:</strong> we helpen je bij het beheren van je afspraken en bieden support wanneer je vragen hebt.</li>
+          <li><strong>Geen reserveringskosten:</strong> we rekenen geen commissie per boeking; met ons vaste tarief weet je precies waar je aan toe bent.</li>
+        </ul>
+        <p>Is je interesse gewekt? Meld je eenvoudig aan, kies het abonnement dat bij je past en vul je bedrijfsgegevens in. Daarna kun je meteen van start met het toevoegen van je beschikbaarheid en het aantrekken van nieuwe klanten.</p>
+      </div>
+    </section>
+
+    <!-- Pricing explanation -->
+    <section class="section">
+      <div class="container">
+        <h2>Transparante prijzen</h2>
+        <p>Met een abonnement op Vrijeplek kies je voor helderheid. Als je maandelijks betaalt, komt dat neer op <strong>€9/maand</strong>. Op jaarbasis is dat <del>€108</del> — maar als je meteen voor een jaar kiest, betaal je slechts <strong>€80/jaar</strong>. Zo bespaar je <strong>€28</strong>!</p>
+      </div>
+    </section>
+
+    <!-- Signup form -->
+    <section class="section">
+      <div class="container">
+        <h2>Meld je bedrijf aan</h2>
+        <p>Vul hieronder je bedrijfsgegevens in. We hebben onder andere je bedrijfsnaam, btw‑nummer, adres en contactgegevens nodig. Na je aanmelding ontvang je van ons de factuur en verdere instructies om je abonnement te activeren.</p>
+        <form class="signup-form" id="signup-form" onsubmit="handleBusinessSignup(event)">
+          <label for="company-name">Bedrijfsnaam</label>
+          <input type="text" id="company-name" name="company-name" required>
+
+          <label for="vat-number">BTW‑nummer</label>
+          <input type="text" id="vat-number" name="vat-number" required>
+
+          <label for="address">Adres</label>
+          <input type="text" id="address" name="address" required>
+
+          <label for="email">E‑mail</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Telefoon</label>
+          <input type="tel" id="phone" name="phone">
+
+          <button type="submit" class="btn btn-lg">Meld je aan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <!-- Script om de aanmelding te bewaren en naar bevestigingspagina te navigeren -->
+  <script>
+    function handleBusinessSignup(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = {
+        companyName: form['company-name'].value,
+        vatNumber: form['vat-number'].value,
+        address: form['address'].value,
+        email: form['email'].value,
+        phone: form['phone'].value,
+      };
+      // Sla de gegevens op in sessionStorage zodat we ze op de volgende pagina kunnen gebruiken
+      sessionStorage.setItem('companyData', JSON.stringify(data));
+      // Ga naar bevestigingspagina waar betaalopties getoond worden
+      window.location.href = 'bevestiging.html';
+      return false;
+    }
+  </script>
+</body>
+</html>
