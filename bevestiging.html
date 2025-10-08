@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bevestiging aanmelding – Vrijeplek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Bedankt voor je aanmelding!</h1>
+        <p>We hebben je bedrijfsgegevens ontvangen. Kies hieronder je abonnement:</p>
+        <div class="subscription-options" style="display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;">
+          <button class="btn btn-lg" onclick="chooseSubscription('monthly')">Maandabonnement (€9/maand)</button>
+          <button class="btn btn-lg" onclick="chooseSubscription('yearly')">Jaarabonnement (€80/jaar)</button>
+        </div>
+        <div id="confirmationMessage" style="margin-top:30px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Haal de eerder ingevoerde gegevens op (indien nodig kun je dit gebruiken om de factuur te vullen)
+    const companyData = JSON.parse(sessionStorage.getItem('companyData') || '{}');
+
+    function chooseSubscription(type) {
+      const messageEl = document.getElementById('confirmationMessage');
+      if (type === 'monthly') {
+        messageEl.innerHTML = '<p><strong>Je hebt gekozen voor het maandabonnement (€9/maand).</strong><br>We sturen je zo meteen een bevestigingsmail met factuur.</p>';
+      } else {
+        messageEl.innerHTML = '<p><strong>Je hebt gekozen voor het jaarabonnement (€80/jaar).</strong><br>We sturen je zo meteen een bevestigingsmail met factuur.</p>';
+      }
+      // Simuleer het versturen van een e‑mail. In een echte implementatie zou je hier een verzoek naar de server sturen.
+      setTimeout(() => {
+        alert('Testmail verstuurd (simulatie). In de echte implementatie wordt hier de mail verstuurd met de factuur in bijlage.');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
