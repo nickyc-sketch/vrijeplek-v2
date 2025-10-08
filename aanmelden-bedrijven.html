@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aanmelden voor bedrijven — Vrijeplek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header with simple brand -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Intro hero section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Aanmelden voor bedrijven</h1>
+        <p class="sub">Word partner van Vrijeplek en bereik meteen nieuwe klanten</p>
+      </div>
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- Pricing explanation -->
+    <section class="section">
+      <div class="container">
+        <h2>Transparante prijzen</h2>
+        <p>Met een abonnement op Vrijeplek kies je voor helderheid. Als je maandelijks betaalt, komt dat neer op <strong>€9/maand</strong>. Op jaarbasis is dat <del>€108</del> — maar als je meteen voor een jaar kiest, betaal je slechts <strong>€80/jaar</strong>. Zo bespaar je <strong>€28</strong>!</p>
+      </div>
+    </section>
+
+    <!-- Signup form -->
+    <section class="section">
+      <div class="container">
+        <h2>Meld je bedrijf aan</h2>
+        <p>Vul hieronder je bedrijfsgegevens in. We hebben onder andere je bedrijfsnaam, btw‑nummer, adres en contactgegevens nodig. Na je aanmelding ontvang je van ons de factuur en verdere instructies om je abonnement te activeren.</p>
+        <form class="signup-form">
+          <label for="company-name">Bedrijfsnaam</label>
+          <input type="text" id="company-name" name="company-name" required>
+
+          <label for="vat-number">BTW‑nummer</label>
+          <input type="text" id="vat-number" name="vat-number" required>
+
+          <label for="address">Adres</label>
+          <input type="text" id="address" name="address" required>
+
+          <label for="email">E‑mail</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Telefoon</label>
+          <input type="tel" id="phone" name="phone">
+
+          <button type="submit" class="btn btn-lg">Meld je aan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
