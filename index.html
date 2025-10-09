@@ -20,41 +20,26 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
+   <!-- Hero -->
+<section class="hero">
   <div class="container hero-inner">
     <h1>Last minute? Zoek een afspraak!</h1>
-    <form class="search" action="/zoeken" method="get" role="search" aria-label="Zoeken">
-  <!-- je inputs/select/knop -->
-</form>
 
-    <form class="searchbar" action="/zoeken" method="get" role="search" aria-label="Zoeken">
-      <div class="search-wrap">
-  </form>
-</div>
-
-      <label class="sr-only" for="q">Wat zoek je?</label>
-      <input id="q" name="q" type="search" placeholder="Dienst of zaak (bv. kapper, tandarts, brunch)" required />
-
-      <label class="sr-only" for="loc">Locatie</label>
-      <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" inputmode="search" autocomplete="off" required />
-
-      <label class="sr-only" for="when">Datum</label>
-      <input id="when" name="when" type="date" />
-
-      <label class="sr-only" for="cat">Categorie</label>
-      <select id="cat" name="cat">
-        <option value="">Alle categorieën</option>
-        <option value="horeca">Horeca</option>
-        <option value="wellness">Wellness &amp; Beauty</option>
-        <option value="zorg">Gezondheidszorg</option>
-        <option value="events">Events &amp; verhuur</option>
-      </select>
+    <div class="search-wrap">
       <form class="search" action="/zoeken" method="get" role="search" aria-label="Zoeken">
-    <!-- je inputs/select/knop -->
-
-      <button type="submit" title="Zoeken">Zoek</button>
-    </form>
+        <input id="q" name="q" type="search" placeholder="Dienst of zaak (bv. kapper, tandarts, brunch)" required>
+        <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" required>
+        <input id="when" name="when" type="date">
+        <select id="cat" name="cat">
+          <option value="">Alle categorieën</option>
+          <option value="horeca">Horeca</option>
+          <option value="wellness">Wellness &amp; Beauty</option>
+          <option value="zorg">Gezondheidszorg</option>
+          <option value="events">Events &amp; verhuur</option>
+        </select>
+        <button class="btn" type="submit">Zoek</button>
+      </form>
+    </div>
 
     <div class="quick-ctas">
       <a class="btn btn-primary" href="#categorieen">Ontdek categorieën</a>
@@ -62,6 +47,7 @@
     </div>
   </div>
 </section>
+
 
 
     <!-- Categorieën -->
