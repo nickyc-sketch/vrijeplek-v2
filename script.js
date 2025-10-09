@@ -46,3 +46,13 @@ document.querySelectorAll('input[type="date"]').forEach((el)=>{
   const el=document.querySelector('.admin-link');
   if(el) el.classList.toggle('show', !!ok);
 })();
+(function(){
+  const k='vp_admin_token';
+  let ok=false;
+  try{
+    const t=JSON.parse(localStorage.getItem(k)||'null');
+    ok=t && t.ok && (Date.now()-t.t)<24*60*60*1000;
+  }catch(e){}
+  const el=document.querySelector('.admin-link');
+  if(el) el.classList.toggle('show', !!ok);
+})();
