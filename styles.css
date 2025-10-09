@@ -131,25 +131,44 @@ h1 {
   margin: 0 0 22px;
 }
 
-.search {
-  display: flex;
+/* === SEARCH GRID (vervangt regels 134-152) === */
+.search{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 180px 200px auto;
   gap: 10px;
   align-items: center;
   background: white;
   padding: 10px;
-  border-radius: 999px;
+  border-radius: 14px;                /* was 999px */
   box-shadow: var(--shadow);
   border: 1px solid var(--ink-300);
-  width: min(760px, 100%);
+  width: min(920px, 100%);            /* breder voor 4 velden */
 }
-.search input {
-  flex: 1;
+
+.search input,
+.search select{
+  width: 100%;
   padding: 12px 14px;
-  border: 0;
+  border: 1px solid var(--ink-300);
+  border-radius: 10px;
   outline: 0;
   font-size: 16px;
-  background: transparent;
+  background: #fff;
 }
+
+.search input:focus,
+.search select:focus{
+  border-color: var(--ocean-500);
+  box-shadow: 0 0 0 3px rgba(14,165,233,.18);
+}
+
+/* knop binnen de grid */
+.search .btn{
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
