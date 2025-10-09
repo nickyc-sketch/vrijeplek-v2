@@ -859,4 +859,7 @@ input[type="date"]{
 }
 @keyframes sheen{ to{ background-position:-200% 0; } }
 .hero .search{ position:relative !important; z-index:2 !important; }
+#nearby-status{font-size:14px;color:#334155;margin-bottom:8px}
+.card-meta{display:flex;gap:8px;align-items:center;font-size:13px;color:#64748b;margin:0}
+.badge{display:inline-block;border:1px solid #e8eff7;border-radius:999px;padding:4px 8px;font-size:12px;color:#0e7490}
 
