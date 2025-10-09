@@ -876,4 +876,24 @@ input[type="date"]{
   border-radius:18px;
   background:linear-gradient(180deg,#7ec3ea,#3aa7d8);
   box-shadow:0 12px 26px rgba(12,74,110,.18), inset 0 0 0 1px rgba(
+.hero .search-wrap::before,
+.hero .search-wrap::after{content:none !important}
 
+.hero .search-wrap{
+  max-width:980px;
+  margin-inline:auto;
+  padding:16px;
+  border-radius:18px;
+  border:2px solid transparent;
+  background:
+    linear-gradient(#ffffff,#ffffff) padding-box,
+    linear-gradient(180deg,#69b8df,#2f94c3) border-box !important;
+  box-shadow:0 12px 26px rgba(12,74,110,.18);
+}
+
+.hero .search{margin:0;position:relative;z-index:1}
+.search input,.search select{background:#fff}
+.search .btn{
+  background:linear-gradient(180deg,#118ec5,#0b6c98);
+  border:1px solid #0b6c98;color:#fff
+}
