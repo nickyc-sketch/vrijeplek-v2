@@ -45,38 +45,40 @@ input[type="date"]::-webkit-calendar-picker-indicator{opacity:1;display:block;cu
   </div>
 </header>
 <main>
-   <section class="hero">
+  <section class="hero">
   <div class="container hero-inner">
     <h1>Last minute? Zoek een afspraak!</h1>
-    <div class="search-wrap"> … </div>
+
+    <div class="search-wrap">
+      <form id="zoeken" class="search" action="/zoeken" method="get" role="search" aria-label="Zoeken">
+        <label class="sr-only" for="q">Zoekterm</label>
+        <input id="q" name="q" type="search" placeholder="Dienst of zaak (bv. kapper, tandarts, brunch)" required>
+
+        <label class="sr-only" for="loc">Locatie</label>
+        <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" required>
+
+        <label class="sr-only" for="when">Datum</label>
+        <input id="when" name="when" type="date">
+
+        <label class="sr-only" for="cat">Categorie</label>
+        <select id="cat" name="cat">
+          <option value="">Alle categorieën</option>
+          <option value="horeca">Horeca</option>
+          <option value="wellness">Wellness &amp; Beauty</option>
+          <option value="zorg">Gezondheidszorg</option>
+          <option value="events">Events &amp; verhuur</option>
+          <option value="interieurverzorging">Interieurverzorging</option>
+          <option value="poetsdiensten">Poetsdiensten</option>
+          <option value="ramenwassers">Ramenwassers</option>
+        </select>
+
+        <button class="btn" type="submit">Zoek</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
-  <form id="zoeken" class="search" action="/zoeken" method="get" role="search" aria-label="Zoeken">
-    <label class="sr-only" for="q">Zoekterm</label>
-    <input id="q" name="q" type="search" placeholder="Dienst of zaak (bv. kapper, tandarts, brunch)" required>
-
-    <label class="sr-only" for="loc">Locatie</label>
-    <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" required>
-
-    <label class="sr-only" for="when">Datum</label>
-    <input id="when" name="when" type="date">
-
-    <label class="sr-only" for="cat">Categorie</label>
-    <select id="cat" name="cat">
-      <option value="">Alle categorieën</option>
-      <option value="horeca">Horeca</option>
-      <option value="wellness">Wellness &amp; Beauty</option>
-      <option value="zorg">Gezondheidszorg</option>
-      <option value="events">Events &amp; verhuur</option>
-      <option value="interieurverzorging">Interieurverzorging</option>
-      <option value="poetsdiensten">Poetsdiensten</option>
-      <option value="ramenwassers">Ramenwassers</option>
-    </select>
-
-    <button class="btn" type="submit">Zoek</button>
-  </form>
-</div>
 
 
     
