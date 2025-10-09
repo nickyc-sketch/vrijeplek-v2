@@ -616,4 +616,20 @@ N
 /* (optioneel) centreer het geheel visueel binnen de hero */
 .hero .container,
 .hero-inner{ align-items: center; }
+/* HERO strak gecentreerd */
+.hero{ position:relative; padding:48px 0 32px; }
+.hero-inner{
+  max-width: 1120px;          /* iets breder dan container mag */
+  margin-inline: auto;        /* centreert de hele inhoud */
+  padding-inline: clamp(12px, 3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* centreert H1 + zoekbalk */
+  gap: 16px;
+}
+.hero h1{
+  margin: 0;
+  text-align: center;
+  line-height: 1.15;
+}
 
