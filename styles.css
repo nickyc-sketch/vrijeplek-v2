@@ -602,4 +602,18 @@ N
   margin-top:4px;         /* kleine ruimte t.o.v. velden */
   white-space:nowrap;
 }
+/* Zoekbalk-blok mooi gecentreerd met gelijke marge links/rechts */
+.search-wrap{
+  max-width: 980px;      /* pas aan naar smaak: 900–1080px */
+  margin-inline: auto;   /* centreert horizontaal */
+  width: 100%;           /* blijft responsief */
+  overflow: hidden;      /* voorkomt mini-overschuiving door schaduw/glow */
+}
+
+/* Zorg dat de inhoud niet naar rechts uitduwt */
+.search{ width: 100%; }
+
+/* (optioneel) centreer het geheel visueel binnen de hero */
+.hero .container,
+.hero-inner{ align-items: center; }
 
