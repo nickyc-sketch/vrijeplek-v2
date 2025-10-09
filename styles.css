@@ -522,4 +522,49 @@ N
   padding-top: 14px;
   padding-bottom: 14px;
 }
+/* --- Zoekformulier: alles op 1 lijn --- */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;              /* afstand tussen velden */
+  flex-wrap: nowrap;      /* alles op 1 rij op desktop */
+}
+
+/* Alle velden netjes schaalbaar */
+.search input,
+.search select {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #dbe7f3;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+  margin: 0;              /* haal eventuele user-agent margins weg */
+  flex: 1 1 0;            /* vul gelijkmatig de rij */
+  min-width: 0;           /* voorkomt rare uitrekking */
+}
+
+/* Meer controle per veld */
+#q   { flex: 1.2 1 220px; }  /* zoekterm wat breder */
+#loc { flex: 1    1 180px; }
+#when{ flex: 0 0 160px; }    /* vaste breedte datum */
+#cat { flex: 0 0 220px; }    /* vaste breedte categorie */
+
+/* Knop rechts, vaste maat */
+.search .btn {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  white-space: nowrap;   /* geen afbreken van “Zoek” */
+  flex: 0 0 auto;
+}
+
+/* Container maxbreedte (als je die nog niet had) */
+.container{ max-width:1080px; margin:0 auto; padding:0 20px; }
+
+/* Responsief: onder 760px stapelen */
+@media (max-width: 760px){
+  .search { flex-wrap: wrap; }
+  #q, #loc, #when, #cat, .search .btn { flex: 1 1 100%; }
+}
 
