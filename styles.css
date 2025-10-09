@@ -737,4 +737,33 @@ input[type="date"]{
 .search label{ pointer-events:none; }
 .search-wrap{ padding: 12px 14px; border-radius:16px; box-shadow:0 8px 20px rgba(12,74,110,.10) }
 .search .btn{ width: 220px; justify-self: center }
+/* — Blauwe kader rond de zoekbalk (met witte binnenplaat) — */
+.search-wrap{
+  position: relative;
+  max-width: clamp(780px, 88vw, 980px);
+  margin-inline: auto;
+  padding: 14px;                      /* buitenrand (blauw) */
+  border-radius: 18px;
+  background: linear-gradient(180deg, #cfefff, #b8e7ff) !important; /* duidelijke blauw */
+  box-shadow:
+    0 10px 22px rgba(12,74,110,.12),
+    inset 0 0 0 1px rgba(14,165,233,.35);
+}
+
+/* Witte binnenplaat zodat de velden niet “op blauw” liggen */
+.search-wrap::after{
+  content: "";
+  position: absolute;
+  inset: 6px;                         /* dikte van de blauwe rand */
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+  z-index: 0;
+}
+
+/* Zorg dat de form-inhoud boven de witte plaat ligt */
+.search{ position: relative; z-index: 1; }
+
+/* (optioneel) iets compacter en mooi gecentreerd */
+.hero-inner{ align-items: center; gap: 14px; }
 
