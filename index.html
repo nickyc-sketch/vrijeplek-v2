@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vrijeplek — Vind en boek zonder gedoe</title>
+  <title>Vrijeplek — Last minute? Zoek een afspraak!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,33 +21,38 @@
 
   <main>
     <!-- Hero -->
-    <section class="hero" id="zoeken">
-      <div class="container hero-inner">
-        <!-- Heldere slogan voor last minute afspraken -->
-        <h1>Last minute? zoek een afspraak!</h1>
-        <!-- Navigatie tabs boven de zoekbalk -->
-        <nav class="tabs" aria-label="Sectienavigatie">
-          <a href="#waarom" class="tab-link">Waarom Vrijeplek</a>
-          <a href="aanmelden-bedrijven.html" class="tab-link">Aanmelden voor bedrijven</a>
-          <a href="#categorieen" class="tab-link">Categorieën</a>
-        </nav>
+    <section class="hero">
+  <div class="container hero-inner">
+    <h1>Last minute? Zoek een afspraak!</h1>
+    <form class="searchbar" action="/zoeken" method="get" role="search" aria-label="Zoeken">
+      <label class="sr-only" for="q">Wat zoek je?</label>
+      <input id="q" name="q" type="search" placeholder="Dienst of zaak (bv. kapper, tandarts, brunch)" required />
 
-        <form id="searchForm" class="search" role="search" aria-label="Zoeken">
-          <input id="q" name="q" type="search" placeholder="Zoek een afspraak…" aria-label="Zoeken">
-          <button type="submit" class="btn">Zoek</button>
-        </form>
+      <label class="sr-only" for="loc">Locatie</label>
+      <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" inputmode="search" autocomplete="off" required />
 
-        <div class="quick-pills" id="quickPills" aria-label="Snelkeuzes">
-          <button class="pill" data-query="horeca">Horeca</button>
-          <button class="pill" data-query="wellness">Wellness &amp; Beauty</button>
-          <button class="pill" data-query="gezondheidszorg">Gezondheidszorg</button>
-          <button class="pill" data-query="kappers">Kappers</button>
-          <button class="pill" data-query="hondensalons">Hondensalons</button>
-          <button class="pill" data-query="brasserie">Brasseries</button>
-        </div>
-      </div>
-      <div class="hero-bg" aria-hidden="true"></div>
-    </section>
+      <label class="sr-only" for="when">Datum</label>
+      <input id="when" name="when" type="date" />
+
+      <label class="sr-only" for="cat">Categorie</label>
+      <select id="cat" name="cat">
+        <option value="">Alle categorieën</option>
+        <option value="horeca">Horeca</option>
+        <option value="wellness">Wellness &amp; Beauty</option>
+        <option value="zorg">Gezondheidszorg</option>
+        <option value="events">Events &amp; verhuur</option>
+      </select>
+
+      <button type="submit" title="Zoeken">Zoek</button>
+    </form>
+
+    <div class="quick-ctas">
+      <a class="btn btn-primary" href="#categorieen">Ontdek categorieën</a>
+      <a class="btn btn-outline" href="/aanmelden.html">Aanmelden voor bedrijven</a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Categorieën -->
     <section class="section" id="categorieen">
