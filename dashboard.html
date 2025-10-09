@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vrijeplek — Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    .wrap{max-width:1080px;margin:0 auto;padding:20px}
+    .card{background:#fff;border:1px solid #e8eff7;border-radius:16px;box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px}
+    .kpis{display:flex;gap:12px;flex-wrap:wrap}
+    .kpi{min-width:160px;border:1px solid #e8eff7;border-radius:12px;padding:12px}
+    .num{font-size:28px;font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </a>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="card">
+      <h1>Dashboard</h1>
+      <div id="me" style="color:#64748b"></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Statistieken</h3>
+      <div class="kpis">
+        <div class="kpi"><div>Weergaven (totaal)</div><div class="num" id="vt">—</div></div>
+        <div class="kpi"><div>Rating</div><div class="num" id="ra">—</div></div>
+        <div class="kpi"><div>Reviews</div><div class="num" id="rc">—</div></div>
+      </div>
+      <ul id="list"></ul>
+      <button id="logout" class="btn" style="margin-top:10px">Uitloggen</button>
+    </div>
+  </main>
+
+  <script>
+    async function token(){ let u=netlifyIdentity.currentUser(); if(!u){ location.href="/aanmelden.html"; return null; } return await u.jwt(); }
+    async function load(){
+      const t = await token(); if(!t) return;
+      document.getElementById("me").textContent = netlifyIdentity.currentUser().email;
+      const r = await fetch("/.netlify/functions/business-mine",{ headers:{ "Authorization":"Bearer "+t }}).then(r=>r.json());
+      const b = r.items && r.items[0];
+      if(!b){ document.getElementById("list").innerHTML="<li>Nog geen bedrijfsprofiel.</li>"; return; }
+      document.getElementById("vt").textContent = b.views_total ?? 0;
+      document.getElementById("ra").textContent = (b.rating_avg ?? 0).toFixed(1);
+      document.getElementById("rc").textContent = b.reviews_count ?? 0;
+      document.getElementById("list").innerHTML = `<li><strong>${b.name}</strong> — ${b.category} • ${b.address}</li>`;
+    }
+    document.getElementById("logout").onclick = ()=>{ netlifyIdentity.logout(); location.href="/"; };
+    netlifyIdentity.on("init", load); netlifyIdentity.init();
+  </script>
+</body>
+</html>
