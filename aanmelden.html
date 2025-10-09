@@ -143,30 +143,59 @@
   </main>
 
   <script>
-    (function(){
-      const k='vp_admin_token';
-      let ok=false;
-      try{const t=JSON.parse(localStorage.getItem(k)||'null');ok=t&&t.ok&&(Date.now()-t.t)<86400000;}catch(e){}
-      const el=document.querySelector('.admin-link'); if(el) el.style.display=ok?'inline-flex':'none';
-    })();
+  async function getToken(){
+    let u = netlifyIdentity.currentUser();
+    if(!u){ netlifyIdentity.open("login"); await new Promise(r=>netlifyIdentity.on("login", ()=>r())); u = netlifyIdentity.currentUser(); netlifyIdentity.close(); }
+    return await u.jwt();
+  }
 
-    function handleBusinessSignup(e){
-      e.preventDefault();
-      const f=e.target;
-      const data={
-        company:f.company.value,
-        vat:f.vat.value,
-        category:f.category.value,
-        address:f.address.value,
-        email:f.email.value,
-        phone:f.phone.value,
-        intro:f.intro.value
-      };
-      sessionStorage.setItem('companyData', JSON.stringify(data));
-      window.location.href='bevestiging.html';
-      return false;
+  async function uploadLogo(file, token){
+    if(!file) return "";
+    const sig = await fetch("/.netlify/functions/cloudinary-sign", {
+      method:"POST", headers:{ "Authorization":"Bearer "+token }
+    }).then(r=>r.json());
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("api_key", sig.api_key);
+    fd.append("timestamp", sig.timestamp);
+    fd.append("signature", sig.signature);
+    fd.append("folder", sig.folder);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${sig.cloud_name}/image/upload`, { method:"POST", body:fd }).then(r=>r.json());
+    return res.secure_url || "";
+  }
+
+  document.getElementById("signupForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const f=e.target;
+    const payload={
+      name:f.company.value.trim(),
+      vat:f.vat.value.trim(),
+      category:f.category.value,
+      address:f.address.value.trim(),
+      email:f.email.value.trim(),
+      phone:f.phone.value.trim(),
+      intro:f.intro.value.trim()
+    };
+    try{
+      const token = await getToken();
+      const logoFile = document.getElementById("logo").files[0];
+      const logo_url = await uploadLogo(logoFile, token);
+      payload.logo_url = logo_url;
+
+      const res = await fetch("/.netlify/functions/business-create",{
+        method:"POST",
+        headers:{ "content-type":"application/json", "Authorization":"Bearer "+token },
+        body: JSON.stringify(payload)
+      }).then(r=>r.json());
+
+      if(!res.ok) throw new Error("create_failed");
+      location.href="/dashboard.html";
+    }catch(err){
+      document.getElementById("msg").textContent="Kon niet aanmelden. Probeer opnieuw.";
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
 .cards{grid-template-columns:1fr 1fr}
