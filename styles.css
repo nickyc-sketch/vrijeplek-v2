@@ -865,4 +865,7 @@ input[type="date"]{
 .header-actions{display:flex;gap:10px;align-items:center}
 .admin-link{display:none;padding:8px 12px;border:1px solid #0ea5e9;border-radius:10px;text-decoration:none;background:#fff;color:#0e7490;font-weight:600}
 .admin-link.show{display:inline-flex}
+.header-actions{display:flex;gap:10px;align-items:center}
+.admin-link{display:none;padding:8px 12px;border:1px solid #0ea5e9;border-radius:10px;text-decoration:none;background:#fff;color:#0e7490;font-weight:600}
+.admin-link.show{display:inline-flex}
 
