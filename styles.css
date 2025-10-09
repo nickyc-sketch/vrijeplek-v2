@@ -479,3 +479,19 @@ N
   .search-wrap{ padding: 10px }
   .search{ grid-template-columns: 1fr; }
 }
+/* Calendar icon voor input[type="date"] */
+.search input[type="date"] {
+  /* verberg standaardpijltjes/icoontjes */
+  appearance: none;
+  /* eigen icoon als achtergrond */
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%230e7490%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22M6.75%203v2.25M17.25%203v2.25M3%2018.75V7.5a2.25%202.25%200%200%201%202.25-2.25h13.5A2.25%202.25%200%200%201%2021%207.5v11.25m-18%200A2.25%202.25%200%200%200%205.25%2021h13.5A2.25%202.25%200%200%200%2021%2018.75m-18%200v-7.5A2.25%202.25%200%200%201%205.25%209h13.5A2.25%202.25%200%200%201%2021%2011.25v7.5%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem 1rem;        /* grootte van het icoon */
+  padding-right: 2.5rem;            /* ruimte voor het icoon */
+}
+
+/* verberg standaardpijltje in WebKit-browsers */
+.search input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
