@@ -23,3 +23,16 @@ pills.forEach(el => el.addEventListener('click', (e) => {
   const query = el.dataset.query || el.textContent.trim();
   submitWith(query);
 }));
+// Forceer openen van de native kalender bij klik op het veld of op het icoon-gedeelte
+document.querySelectorAll('input[type="date"]').forEach((el)=>{
+  // Klik rechts op het icoon-gedeelte? -> open picker (Chromium ondersteunt showPicker)
+  el.addEventListener('click', () => {
+    if (typeof el.showPicker === 'function') el.showPicker();
+  });
+  // Enter/Space opent ook
+  el.addEventListener('keydown', (e)=>{
+    if ((e.key === 'Enter' || e.code === 'Space') && typeof el.showPicker === 'function'){
+      e.preventDefault(); el.showPicker();
+    }
+  });
+});
