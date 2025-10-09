@@ -31,12 +31,19 @@
         <input id="loc" name="loc" type="text" placeholder="Locatie (bv. Genk, Antwerpen)" required>
         <input id="when" name="when" type="date">
         <select id="cat" name="cat">
-          <option value="">Alle categorieën</option>
-          <option value="horeca">Horeca</option>
-          <option value="wellness">Wellness &amp; Beauty</option>
-          <option value="zorg">Gezondheidszorg</option>
-          <option value="events">Events &amp; verhuur</option>
-        </select>
+          <label class="sr-only" for="cat">Categorie</label>
+<select id="cat" name="cat">
+  <option value="">Alle categorieën</option>
+  <option value="horeca">Horeca</option>
+  <option value="wellness">Wellness &amp; Beauty</option>
+  <option value="zorg">Gezondheidszorg</option>
+  <option value="events">Events &amp; verhuur</option>
+  <!-- Nieuwe categorieën -->
+  <option value="interieurverzorging">Interieurverzorging</option>
+  <option value="poetsdiensten">Poetsdiensten</option>
+  <option value="ramenwassers">Ramenwassers</option>
+</select>
+
         <button class="btn" type="submit">Zoek</button>
       </form>
     </div>
