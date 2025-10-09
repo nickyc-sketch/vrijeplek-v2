@@ -9,22 +9,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .page-hero{padding:42px 0;background:linear-gradient(180deg,#eaf6ff,#f8fbff)}
+    .page-hero{padding:44px 0;background:linear-gradient(180deg,#e8f4ff,#f7fbff)}
     .page-hero h1{margin:0;text-align:center}
-    .cols{display:grid;grid-template-columns:1.3fr .9fr;gap:16px}
+    .page-hero p{margin:8px 0 0;text-align:center;color:#64748b}
+
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+    .cards{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
     .card{background:#fff;border:1px solid #e8eff7;border-radius:16px;box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px}
-    .card h3{margin:0 0 8px}
-    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-    .list li{display:flex;gap:10px;align-items:flex-start}
-    .dot{width:8px;height:8px;border-radius:50%;background:#0ea5e9;margin-top:7px;flex:0 0 8px}
-    .badge{display:inline-block;border:1px solid #dbe7f3;border-radius:999px;padding:4px 8px;font-size:12px;color:#0e7490}
-    .stat{display:flex;gap:10px;align-items:center}
-    .stat .num{font-size:32px;font-weight:700;line-height:1}
+    .card h2,.card h3{margin:0 0 10px}
+
+    .spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .spec{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e8eff7;border-radius:14px;padding:14px}
+    .spec-ico{flex:0 0 42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f1f9ff;font-size:18px;color:#0e7490}
+    .spec-title{font-weight:700}
+    .spec-sub{color:#64748b;font-size:14px;margin-top:2px}
+    .pill{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;border:1px solid transparent;font-size:12px;vertical-align:middle}
+    .pill-req{color:#0b6c98;border-color:#0b6c981a;background:#e6f4fb}
+    .pill-opt{color:#64748b;border-color:#64748b1a;background:#f4f6f8}
+
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .step{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #e8eff7;border-radius:14px;padding:14px}
+    .step-num{flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:999px;background:#0ea5e9;color:#fff;font-weight:700}
+    .step-title{font-weight:700}
+    .step-sub{color:#64748b;font-size:14px}
+
+    .stats{display:flex;gap:14px;align-items:center}
+    .stats .num{font-size:34px;font-weight:700;line-height:1}
     .muted{color:#64748b}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+    .cta-band{background:linear-gradient(90deg,#e8f6ff,#eefaff);border-top:1px solid #e6eef6;border-bottom:1px solid #e6eef6}
+    .cta-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:18px 0}
     .btn-lg{height:48px;padding:0 20px;border-radius:14px;font-weight:700}
-    .cta{background:linear-gradient(90deg,#e8f6ff,#eefaff)}
-    @media (max-width:980px){.cols{grid-template-columns:1fr}}
+
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form .row{display:flex;flex-direction:column;gap:6px}
+    .form label{font-size:14px;color:#334155}
+    .form input,.form textarea,.form select{height:44px;padding:0 12px;border:1px solid #dbe7f3;border-radius:12px;background:#fff;font-size:14px}
+    .form textarea{height:96px;padding:10px 12px;resize:vertical}
+    .form .full{grid-column:1/-1}
+    .form .btn{height:46px;border-radius:12px}
+
+    @media (max-width:1000px){.cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}}
+    @media (max-width:680px){.spec-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -41,149 +67,104 @@
 
   <main>
     <section class="page-hero">
-      <div class="container">
+      <div class="wrap">
         <h1>Maak je bedrijfsprofiel</h1>
-        <p class="muted" style="text-align:center;margin-top:8px">Vul lege momenten vandaag nog met boekingen uit je buurt.</p>
+        <p>Vul lege momenten vandaag nog met boekingen uit je buurt.</p>
       </div>
     </section>
 
     <section class="section">
-  <div class="container">
-    <h2>Wat tonen we op je profiel</h2>
-
-    <div class="spec-grid">
-      <div class="spec-item">
-        <div class="spec-icon">🏷️</div>
-        <div class="spec-body">
-          <div class="spec-title">Naam &amp; categorie <span class="pill pill--req">verplicht</span></div>
-          <div class="spec-sub">bv. “Salon Luna” — Kapsalon</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">📍</div>
-        <div class="spec-body">
-          <div class="spec-title">Locatie <span class="pill pill--req">verplicht</span></div>
-          <div class="spec-sub">adres + kaartpin voor “in de buurt”</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">🧾</div>
-        <div class="spec-body">
-          <div class="spec-title">BTW-nummer <span class="pill pill--req">verplicht</span></div>
-          <div class="spec-sub">nodig voor bedrijfsverificatie</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">☎️</div>
-        <div class="spec-body">
-          <div class="spec-title">Contact <span class="pill pill--req">verplicht</span></div>
-          <div class="spec-sub">telefoon en/of website</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">🖼️</div>
-        <div class="spec-body">
-          <div class="spec-title">Logo <span class="pill pill--opt">optioneel</span></div>
-          <div class="spec-sub">PNG/JPG 512×512 aangeraden</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">✍️</div>
-        <div class="spec-body">
-          <div class="spec-title">Korte intro <span class="pill pill--opt">optioneel</span></div>
-          <div class="spec-sub">één zin waarom klanten jou kiezen</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">⏰</div>
-        <div class="spec-body">
-          <div class="spec-title">Openingsuren <span class="pill pill--opt">optioneel</span></div>
-          <div class="spec-sub">toon je standaarduren</div>
-        </div>
-      </div>
-
-      <div class="spec-item">
-        <div class="spec-icon">⚡</div>
-        <div class="spec-body">
-          <div class="spec-title">Last-minute tijdsloten <span class="pill pill--free">wanneer jij wil</span></div>
-          <div class="spec-sub">publiceer lege momenten met één klik</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Upload in 2 minuten</h2>
-    <div class="steps">
-      <div class="step"><span class="step-num">1</span><div><div class="step-title">Basis</div><div class="step-sub">naam, categorie, BTW-nummer</div></div></div>
-      <div class="step"><span class="step-num">2</span><div><div class="step-title">Locatie</div><div class="step-sub">adres → automatische kaartpin</div></div></div>
-      <div class="step"><span class="step-num">3</span><div><div class="step-title">Profiel</div><div class="step-sub">logo/cover (optioneel), contact, intro</div></div></div>
-      <div class="step"><span class="step-num">4</span><div><div class="step-title">Tijdsloten</div><div class="step-sub">publiceer je vrije momenten</div></div></div>
-    </div>
-  </div>
-</section>
-
-
+      <div class="wrap cards">
         <div class="card">
-          <h3>Upload in 2 minuten</h3>
-          <ul class="list">
-            <li><span class="dot"></span><div><strong>Logo</strong> (PNG/JPG, 512×512 aangeraden)</div></li>
-            <li><span class="dot"></span><div><strong>Cover</strong> (optioneel, 1600×900)</div></li>
-            <li><span class="dot"></span><div><strong>Adres</strong> (wij zetten je pin automatisch)</div></li>
-            <li><span class="dot"></span><div><strong>Contact</strong> (tel/website)</div></li>
-            <li><span class="dot"></span><div><strong>Korte intro</strong> (max. 120 tekens)</div></li>
-          </ul>
+          <h2>Wat tonen we op je profiel</h2>
+          <div class="spec-grid">
+            <div class="spec"><div class="spec-ico">🏷️</div><div><div class="spec-title">Naam &amp; categorie <span class="pill pill-req">verplicht</span></div><div class="spec-sub">bv. “Salon Luna” — Kapsalon</div></div></div>
+            <div class="spec"><div class="spec-ico">📍</div><div><div class="spec-title">Locatie <span class="pill pill-req">verplicht</span></div><div class="spec-sub">adres + kaartpin voor “in de buurt”</div></div></div>
+            <div class="spec"><div class="spec-ico">🧾</div><div><div class="spec-title">BTW-nummer <span class="pill pill-req">verplicht</span></div><div class="spec-sub">verificatie van je bedrijf</div></div></div>
+            <div class="spec"><div class="spec-ico">☎️</div><div><div class="spec-title">Contact <span class="pill pill-req">verplicht</span></div><div class="spec-sub">telefoon en/of website</div></div></div>
+            <div class="spec"><div class="spec-ico">🖼️</div><div><div class="spec-title">Logo <span class="pill">optioneel</span></div><div class="spec-sub">PNG/JPG 512×512 aangeraden</div></div></div>
+            <div class="spec"><div class="spec-ico">✍️</div><div><div class="spec-title">Korte intro <span class="pill">optioneel</span></div><div class="spec-sub">één zin waarom klanten jou kiezen</div></div></div>
+            <div class="spec"><div class="spec-ico">⏰</div><div><div class="spec-title">Openingsuren <span class="pill">optioneel</span></div><div class="spec-sub">toon je standaarduren</div></div></div>
+            <div class="spec"><div class="spec-ico">⚡</div><div><div class="spec-title">Last-minute tijdsloten <span class="pill">wanneer jij wil</span></div><div class="spec-sub">publiceer lege momenten met één klik</div></div></div>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container cols">
         <div class="card">
           <h3>Zo werken tijdsloten</h3>
-          <ul class="list">
-            <li><span class="dot"></span><div><strong>Kies je lege momenten</strong><br><span class="muted">bv. vandaag 14:30–16:00 of morgen 10:00–12:00</span></div></li>
-            <li><span class="dot"></span><div><strong>Stel de dienst in</strong><br><span class="muted">knippen, massage, consult, lunch, …</span></div></li>
-            <li><span class="dot"></span><div><strong>Publiceer</strong><br><span class="muted">verschijnt direct bij “Zaken in de buurt”</span></div></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Wat levert het op?</h3>
-          <div class="stat">
-            <div class="num">+12%</div>
-            <div>
-              <div><strong>extra omzet (indicatief)</strong></div>
-              <div class="muted">typisch <strong>+8–18%</strong> door lege uren te vullen</div>
-            </div>
+          <div class="steps" style="margin-top:6px">
+            <div class="step"><span class="step-num">1</span><div><div class="step-title">Kies lege momenten</div><div class="step-sub">vandaag 14:30–16:00, morgen 10:00–12:00</div></div></div>
+            <div class="step"><span class="step-num">2</span><div><div class="step-title">Koppel een dienst</div><div class="step-sub">knippen, massage, consult, lunch…</div></div></div>
+            <div class="step"><span class="step-num">3</span><div><div class="step-title">Publiceer</div><div class="step-sub">verschijnt direct bij “Zaken in de buurt”</div></div></div>
+            <div class="step"><span class="step-num">4</span><div><div class="step-title">Krijg boekingen</div><div class="step-sub">bevestiging per e-mail</div></div></div>
           </div>
-          <p class="muted" style="margin-top:8px">
-            Voorbeeld: gemiddeld ticket €40, 2 extra boekingen/dag × 20 dagen = €1.600/maand extra omzet.
-          </p>
+          <div class="stats" style="margin-top:12px">
+            <div class="num">+12%</div>
+            <div class="muted">extra omzet (typisch bereik <strong>+8–18%</strong>) door lege uren te vullen</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section cta">
-      <div class="container card" id="start">
-        <h3>Klaar om te starten?</h3>
-        <p class="muted">Eenvoudig tarief: <strong>€9/maand</strong>. Pauzeren of aanpassen kan wanneer je wil.</p>
-        <div class="cta-row">
-          <a class="btn btn-lg btn-primary" href="#start">Start je profiel</a>
-          <span class="muted">Zelf klaarzetten in 2 min. Je beslist wanneer je live gaat.</span>
+    <section class="cta-band">
+      <div class="wrap cta-inner">
+        <div>
+          <div style="font-weight:700">Klaar om te starten?</div>
+          <div class="muted">Eenvoudig tarief: <strong>€9/maand</strong>. Pauzeren of aanpassen kan wanneer je wil.</div>
         </div>
+        <a class="btn btn-lg btn-primary" href="#signup">Start je profiel</a>
+      </div>
+    </section>
+
+    <section class="section" id="signup">
+      <div class="wrap card">
+        <h2>Meld je bedrijf aan</h2>
+        <p class="muted" style="margin:6px 0 12px">Vul je gegevens in. Je kunt later altijd aanpassen of pauzeren.</p>
+        <form class="form" onsubmit="handleBusinessSignup(event)">
+          <div class="row"><label for="company">Bedrijfsnaam *</label><input id="company" name="company" required></div>
+          <div class="row"><label for="vat">BTW-nummer *</label><input id="vat" name="vat" required></div>
+          <div class="row"><label for="category">Categorie *</label>
+            <select id="category" name="category" required>
+              <option value="">Kies een categorie</option>
+              <option>Horeca</option><option>Wellness & Beauty</option><option>Gezondheidszorg</option>
+              <option>Events & verhuur</option><option>Interieurverzorging</option><option>Poetsdiensten</option><option>Ramenwassers</option>
+            </select>
+          </div>
+          <div class="row"><label for="address">Adres *</label><input id="address" name="address" required></div>
+          <div class="row"><label for="email">E-mail *</label><input id="email" name="email" type="email" required></div>
+          <div class="row"><label for="phone">Telefoon</label><input id="phone" name="phone" type="tel"></div>
+          <div class="row full"><label for="intro">Korte intro (optioneel)</label><textarea id="intro" name="intro" maxlength="160"></textarea></div>
+          <div class="row"><label for="logo">Logo (optioneel)</label><input id="logo" name="logo" type="file" accept="image/*"></div>
+          <div class="row"><label for="hours">Openingsuren (optioneel)</label><input id="hours" name="hours" placeholder="bv. Ma–Vr 9–18u"></div>
+          <div class="row full"><button class="btn btn-lg btn-primary" type="submit">Aanmelden</button></div>
+        </form>
       </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    (function(){
+      const k='vp_admin_token';
+      let ok=false;
+      try{const t=JSON.parse(localStorage.getItem(k)||'null');ok=t&&t.ok&&(Date.now()-t.t)<86400000;}catch(e){}
+      const el=document.querySelector('.admin-link'); if(el) el.style.display=ok?'inline-flex':'none';
+    })();
+
+    function handleBusinessSignup(e){
+      e.preventDefault();
+      const f=e.target;
+      const data={
+        company:f.company.value,
+        vat:f.vat.value,
+        category:f.category.value,
+        address:f.address.value,
+        email:f.email.value,
+        phone:f.phone.value,
+        intro:f.intro.value
+      };
+      sessionStorage.setItem('companyData', JSON.stringify(data));
+      window.location.href='bevestiging.html';
+      return false;
+    }
+  </script>
 </body>
 </html>
