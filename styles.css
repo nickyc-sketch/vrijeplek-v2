@@ -687,4 +687,6 @@ N
 .search .btn{
   grid-column:
 .quick-ctas{ display:none !important; }
+.hero-inner{ gap: 12px; }          /* was 16px in mijn snippet */
+.search-wrap{ margin-bottom: 6px; } /* iets compacter */
 
