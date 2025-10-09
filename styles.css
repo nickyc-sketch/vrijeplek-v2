@@ -735,4 +735,6 @@ input[type="date"]{
 
 /* Zorg dat onzichtbare labels niet “bovenop” liggen */
 .search label{ pointer-events:none; }
+.search-wrap{ padding: 12px 14px; border-radius:16px; box-shadow:0 8px 20px rgba(12,74,110,.10) }
+.search .btn{ width: 220px; justify-self: center }
 
