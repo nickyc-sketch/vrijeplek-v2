@@ -897,3 +897,31 @@ input[type="date"]{
   background:linear-gradient(180deg,#118ec5,#0b6c98);
   border:1px solid #0b6c98;color:#fff
 }
+.hero .search-wrap::before,
+.hero .search-wrap::after{content:none !important;display:none !important}
+
+.hero .search-wrap{
+  position:relative !important;
+  max-width:980px !important;
+  margin-inline:auto !important;
+  padding:16px !important;
+  border-radius:18px !important;
+  border:2px solid transparent !important;
+  background:
+    linear-gradient(#ffffff,#ffffff) padding-box,
+    linear-gradient(180deg,#57add7,#1e86b9) border-box !important;
+  box-shadow:0 12px 26px rgba(12,74,110,.18) !important;
+}
+
+.hero .search{
+  position:relative !important;
+  z-index:1 !important;
+  margin:0 !important;
+}
+
+.search input,.search select{background:#fff !important}
+.search .btn{
+  background:linear-gradient(180deg,#117fb4,#0b648c) !important;
+  border:1px solid #0b648c !important;
+  color:#fff !important;
+}
