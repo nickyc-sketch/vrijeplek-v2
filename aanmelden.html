@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vrijeplek — Maak je bedrijfsprofiel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero{padding:42px 0;background:linear-gradient(180deg,#eaf6ff,#f8fbff)}
+    .page-hero h1{margin:0;text-align:center}
+    .cols{display:grid;grid-template-columns:1.3fr .9fr;gap:16px}
+    .card{background:#fff;border:1px solid #e8eff7;border-radius:16px;box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px}
+    .card h3{margin:0 0 8px}
+    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .list li{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:8px;height:8px;border-radius:50%;background:#0ea5e9;margin-top:7px;flex:0 0 8px}
+    .badge{display:inline-block;border:1px solid #dbe7f3;border-radius:999px;padding:4px 8px;font-size:12px;color:#0e7490}
+    .stat{display:flex;gap:10px;align-items:center}
+    .stat .num{font-size:32px;font-weight:700;line-height:1}
+    .muted{color:#64748b}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .btn-lg{height:48px;padding:0 20px;border-radius:14px;font-weight:700}
+    .cta{background:linear-gradient(90deg,#e8f6ff,#eefaff)}
+    @media (max-width:980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </a>
+      <nav class="header-actions">
+        <a class="admin-link" href="/admin.html" style="display:none">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Maak je bedrijfsprofiel</h1>
+        <p class="muted" style="text-align:center;margin-top:8px">Vul lege momenten vandaag nog met boekingen uit je buurt.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cols">
+        <div class="card">
+          <h3>Wat tonen we op je profiel</h3>
+          <ul class="list">
+            <li><span class="dot"></span><div><strong>Naam &amp; categorie</strong> <span class="badge">verplicht</span><br><span class="muted">bv. “Salon Luna” — Kapsalon</span></div></li>
+            <li><span class="dot"></span><div><strong>Locatie</strong> <span class="badge">verplicht</span><br><span class="muted">adres + kaartpin voor “in de buurt”</span></div></li>
+            <li><span class="dot"></span><div><strong>Logo</strong> <span class="badge">verplicht</span> &nbsp; <strong>Coverfoto</strong> <span class="badge">optioneel</span></div></li>
+            <li><span class="dot"></span><div><strong>Korte intro</strong> <span class="badge">verplicht</span><br><span class="muted">één zin waarom klanten jou kiezen</span></div></li>
+            <li><span class="dot"></span><div><strong>Contact</strong> <span class="badge">verplicht</span><br><span class="muted">telefoon of website</span></div></li>
+            <li><span class="dot"></span><div><strong>Openingsuren</strong> <span class="badge">optioneel</span></div></li>
+            <li><span class="dot"></span><div><strong>Last-minute tijdsloten</strong> <span class="badge">wanneer jij wil</span></div></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Upload in 2 minuten</h3>
+          <ul class="list">
+            <li><span class="dot"></span><div><strong>Logo</strong> (PNG/JPG, 512×512 aangeraden)</div></li>
+            <li><span class="dot"></span><div><strong>Cover</strong> (optioneel, 1600×900)</div></li>
+            <li><span class="dot"></span><div><strong>Adres</strong> (wij zetten je pin automatisch)</div></li>
+            <li><span class="dot"></span><div><strong>Contact</strong> (tel/website)</div></li>
+            <li><span class="dot"></span><div><strong>Korte intro</strong> (max. 120 tekens)</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cols">
+        <div class="card">
+          <h3>Zo werken tijdsloten</h3>
+          <ul class="list">
+            <li><span class="dot"></span><div><strong>Kies je lege momenten</strong><br><span class="muted">bv. vandaag 14:30–16:00 of morgen 10:00–12:00</span></div></li>
+            <li><span class="dot"></span><div><strong>Stel de dienst in</strong><br><span class="muted">knippen, massage, consult, lunch, …</span></div></li>
+            <li><span class="dot"></span><div><strong>Publiceer</strong><br><span class="muted">verschijnt direct bij “Zaken in de buurt”</span></div></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Wat levert het op?</h3>
+          <div class="stat">
+            <div class="num">+12%</div>
+            <div>
+              <div><strong>extra omzet (indicatief)</strong></div>
+              <div class="muted">typisch <strong>+8–18%</strong> door lege uren te vullen</div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:8px">
+            Voorbeeld: gemiddeld ticket €40, 2 extra boekingen/dag × 20 dagen = €1.600/maand extra omzet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <div class="container card" id="start">
+        <h3>Klaar om te starten?</h3>
+        <p class="muted">Eenvoudig tarief: <strong>€9/maand</strong>. Pauzeren of aanpassen kan wanneer je wil.</p>
+        <div class="cta-row">
+          <a class="btn btn-lg btn-primary" href="#start">Start je profiel</a>
+          <span class="muted">Zelf klaarzetten in 2 min. Je beslist wanneer je live gaat.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
