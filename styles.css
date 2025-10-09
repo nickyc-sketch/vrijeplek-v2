@@ -686,4 +686,5 @@ N
 /* “Zoek” onderaan, mooi gecentreerd, normale breedte */
 .search .btn{
   grid-column:
+.quick-ctas{ display:none !important; }
 
