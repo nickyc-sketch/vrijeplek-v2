@@ -495,3 +495,31 @@ N
 .search input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
+/* Modern kalendericoon + subtiele datumstijl */
+
+/* Verberg het standaard browser‑icoon en toon ons eigen icoon */
+.search input[type="date"] {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230e7490%22%20stroke-width%3D%222%22%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%2218%22%20height%3D%2217%22%20rx%3D%222%22%20/%3E%3Cline%20x1%3D%227%22%20y1%3D%222%22%20x2%3D%227%22%20y2%3D%226%22%20/%3E%3Cline%20x1%3D%2217%22%20y1%3D%222%22%20x2%3D%2217%22%20y2%3D%226%22%20/%3E%3Cline%20x1%3D%223%22%20y1%3D%229%22%20x2%3D%2221%22%20y2%3D%229%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.2rem 1.2rem;
+  padding-right: 2.6rem; /* ruimte voor het icoon */
+}
+
+/* Verberg de standaard kalenderknop in Chrome/Safari */
+.search input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+/* Geef de datumtekst een zachte kleur zodat 'dd/mm/jjjj' minder opvalt */
+.search input[type="date"]::-webkit-datetime-edit {
+  color: var(--ink-500);
+}
+
+/* Extra: vergroot het datumveld iets zodat de tekst en icoon lucht krijgen */
+.search input[type="date"] {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
