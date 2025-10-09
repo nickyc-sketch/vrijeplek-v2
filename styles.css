@@ -567,4 +567,39 @@ N
   .search { flex-wrap: wrap; }
   #q, #loc, #when, #cat, .search .btn { flex: 1 1 100%; }
 }
+/* Zoekformulier: knop onder de rij velden */
+.search{
+  display:flex;
+  flex-wrap:wrap;         /* laat breken naar volgende lijn */
+  align-items:flex-end;
+  gap:12px;
+}
+
+.search input,
+.search select{
+  height:44px;
+  padding:0 12px;
+  border:1px solid #dbe7f3;
+  border-radius:12px;
+  background:#fff;
+  font-size:14px;
+  margin:0;
+  flex:1 1 0;             /* velden op één rij */
+  min-width:0;
+}
+
+/* breedtes per veld (pas aan naar smaak) */
+#q{   flex:1.2 1 240px; }
+#loc{ flex:1    1 200px; }
+#when{flex:0 0 160px; }
+#cat{ flex:0 0 220px; }
+
+/* Knop op eigen rij, volle breedte */
+.search .btn{
+  flex:1 0 100%;          /* neemt volledige volgende lijn */
+  height:48px;
+  border-radius:12px;
+  margin-top:4px;         /* kleine ruimte t.o.v. velden */
+  white-space:nowrap;
+}
 
