@@ -689,4 +689,14 @@ N
 .quick-ctas{ display:none !important; }
 .hero-inner{ gap: 12px; }          /* was 16px in mijn snippet */
 .search-wrap{ margin-bottom: 6px; } /* iets compacter */
+/* — Header modern & consistent — */
+.site-header{
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid #e6eef6;
+}
+.header-inner{ display:flex; align-items:center; justify-content:space-between; height:64px }
+.brand-name{ font-weight:700; font-size:20px; letter-spacing:.2px; color:#0f172a }
+.brand-dot{ display:inline-block; width:8px; height:8px; margin-left:6px; border-radius:50%; background:#0ea5e9 }
 
