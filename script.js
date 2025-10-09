@@ -71,3 +71,24 @@ function trackView(businessId){
     });
   }
 }
+function trackView(businessId){
+  if(!businessId) return;
+  const body = JSON.stringify({ businessId });
+  if (navigator.sendBeacon) {
+    const blob = new Blob([body], { type: "application/json" });
+    navigator.sendBeacon("/.netlify/functions/track-view", blob);
+  } else {
+    fetch("/.netlify/functions/track-view", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body,
+      keepalive: true
+    });
+  }
+}
+
+document.addEventListener("click",(e)=>{
+  const a=e.target.closest("a.card[data-id]");
+  if(!a) return;
+  trackView(a.dataset.id);
+});
