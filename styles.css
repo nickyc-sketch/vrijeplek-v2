@@ -323,7 +323,7 @@ h2 {
 }
 .tabs .tab-link:hover {
   border-color: var(--ocean-500);
-  transform: translateY(-2px);
+  transform: translateY(-2px);}
 /* ===== Blauwe balk + opgepoetste inputs ===== */
 .search-wrap{
   background: linear-gradient(135deg, var(--ocean-300), var(--ocean-500));
