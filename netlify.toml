@@ -5,7 +5,8 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["stripe", "nodemailer", "node-fetch"]
+  external_node_modules = ["stripe", "nodemailer", "node-fetch", "mongodb"]
+
 
 [[redirects]]
   from = "/api/*"
@@ -17,6 +18,4 @@
   [headers.values]
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
-[functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["mongodb"]
+
