@@ -10,48 +10,90 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Basis */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin:0; padding:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#0f172a; }
+
+    /* Hero */
     .page-hero{padding:44px 0;background:linear-gradient(180deg,#e8f4ff,#f7fbff)}
     .page-hero h1{margin:0;text-align:center}
     .page-hero p{margin:8px 0 0;text-align:center;color:#64748b}
 
+    /* Layout */
     .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-    .cards{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    .card{background:#fff;border:1px solid #e8eff7;border-radius:16px;box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px}
+    .cards{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:16px;
+      /* Zéér belangrijk voor overflow in grid-items */
+      align-items:start;
+    }
+    .card{
+      background:#fff;border:1px solid #e8eff7;border-radius:16px;
+      box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px;
+      min-width:0; /* voorkomt uitduwen in grid */
+    }
     .card h2,.card h3{margin:0 0 10px}
 
-    .spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    .spec{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e8eff7;border-radius:14px;padding:14px}
-    .spec-ico{flex:0 0 42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f1f9ff;font-size:18px;color:#0e7490}
-    .spec-title{font-weight:700}
-    .spec-sub{color:#64748b;font-size:14px;margin-top:2px}
+    /* Specs */
+    .spec-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px
+    }
+    .spec{
+      display:flex;gap:12px;align-items:flex-start;background:#fff;
+      border:1px solid #e8eff7;border-radius:14px;padding:14px;min-width:0;
+    }
+    .spec-ico{
+      flex:0 0 42px;height:42px;display:grid;place-items:center;border-radius:12px;
+      background:#f1f9ff;font-size:18px;color:#0e7490
+    }
+    .spec-title{font-weight:700;line-height:1.25;word-break:break-word}
+    .spec-sub{color:#64748b;font-size:14px;margin-top:2px;line-height:1.35;word-break:break-word;overflow-wrap:anywhere}
+
     .pill{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;border:1px solid transparent;font-size:12px;vertical-align:middle}
     .pill-req{color:#0b6c98;border-color:#0b6c981a;background:#e6f4fb}
     .pill-opt{color:#64748b;border-color:#64748b1a;background:#f4f6f8}
 
+    /* Steps */
     .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .step{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #e8eff7;border-radius:14px;padding:14px}
+    .step{
+      display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #e8eff7;
+      border-radius:14px;padding:14px;min-width:0;
+    }
     .step-num{flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:999px;background:#0ea5e9;color:#fff;font-weight:700}
-    .step-title{font-weight:700}
-    .step-sub{color:#64748b;font-size:14px}
+    .step-title{font-weight:700;line-height:1.25;word-break:break-word}
+    .step-sub{color:#64748b;font-size:14px;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}
 
-    .stats{display:flex;gap:14px;align-items:center}
+    /* Stats */
+    .stats{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
     .stats .num{font-size:34px;font-weight:700;line-height:1}
     .muted{color:#64748b}
 
+    /* CTA */
     .cta-band{background:linear-gradient(90deg,#e8f6ff,#eefaff);border-top:1px solid #e6eef6;border-bottom:1px solid #e6eef6}
     .cta-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:18px 0}
     .btn-lg{height:48px;padding:0 20px;border-radius:14px;font-weight:700}
 
+    /* Form */
     .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .form .row{display:flex;flex-direction:column;gap:6px}
+    .form .row{display:flex;flex-direction:column;gap:6px;min-width:0}
     .form label{font-size:14px;color:#334155}
-    .form input,.form textarea,.form select{height:44px;padding:0 12px;border:1px solid #dbe7f3;border-radius:12px;background:#fff;font-size:14px}
+    .form input,.form textarea,.form select{
+      height:44px;padding:0 12px;border:1px solid #dbe7f3;border-radius:12px;background:#fff;font-size:14px;min-width:0
+    }
     .form textarea{height:96px;padding:10px 12px;resize:vertical}
     .form .full{grid-column:1/-1}
     .form .btn{height:46px;border-radius:12px}
 
-    @media (max-width:1000px){.cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}}
-    @media (max-width:680px){.spec-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
+    /* Responsive tweaks (incl. jouw losse CSS die onderaan stond) */
+    @media (max-width:1200px){ .cards{grid-template-columns:1fr 1fr} }
+    @media (max-width:1000px){
+      .cards{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:680px){
+      .spec-grid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .form{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -83,10 +125,10 @@
             <div class="spec"><div class="spec-ico">📍</div><div><div class="spec-title">Locatie <span class="pill pill-req">verplicht</span></div><div class="spec-sub">adres + kaartpin voor “in de buurt”</div></div></div>
             <div class="spec"><div class="spec-ico">🧾</div><div><div class="spec-title">BTW-nummer <span class="pill pill-req">verplicht</span></div><div class="spec-sub">verificatie van je bedrijf</div></div></div>
             <div class="spec"><div class="spec-ico">☎️</div><div><div class="spec-title">Contact <span class="pill pill-req">verplicht</span></div><div class="spec-sub">telefoon en/of website</div></div></div>
-            <div class="spec"><div class="spec-ico">🖼️</div><div><div class="spec-title">Logo <span class="pill">optioneel</span></div><div class="spec-sub">PNG/JPG 512×512 aangeraden</div></div></div>
-            <div class="spec"><div class="spec-ico">✍️</div><div><div class="spec-title">Korte intro <span class="pill">optioneel</span></div><div class="spec-sub">één zin waarom klanten jou kiezen</div></div></div>
-            <div class="spec"><div class="spec-ico">⏰</div><div><div class="spec-title">Openingsuren <span class="pill">optioneel</span></div><div class="spec-sub">toon je standaarduren</div></div></div>
-            <div class="spec"><div class="spec-ico">⚡</div><div><div class="spec-title">Last-minute tijdsloten <span class="pill">wanneer jij wil</span></div><div class="spec-sub">publiceer lege momenten met één klik</div></div></div>
+            <div class="spec"><div class="spec-ico">🖼️</div><div><div class="spec-title">Logo <span class="pill pill-opt">optioneel</span></div><div class="spec-sub">PNG/JPG 512×512 aangeraden</div></div></div>
+            <div class="spec"><div class="spec-ico">✍️</div><div><div class="spec-title">Korte intro <span class="pill pill-opt">optioneel</span></div><div class="spec-sub">één zin waarom klanten jou kiezen</div></div></div>
+            <div class="spec"><div class="spec-ico">⏰</div><div><div class="spec-title">Openingsuren <span class="pill pill-opt">optioneel</span></div><div class="spec-sub">toon je standaarduren</div></div></div>
+            <div class="spec"><div class="spec-ico">⚡</div><div><div class="spec-title">Last-minute tijdsloten <span class="pill pill-opt">wanneer jij wil</span></div><div class="spec-sub">publiceer lege momenten met één klik</div></div></div>
           </div>
         </div>
 
@@ -120,7 +162,12 @@
       <div class="wrap card">
         <h2>Meld je bedrijf aan</h2>
         <p class="muted" style="margin:6px 0 12px">Vul je gegevens in. Je kunt later altijd aanpassen of pauzeren.</p>
-        <form class="form" onsubmit="handleBusinessSignup(event)">
+
+        <!-- status/feedback -->
+        <p id="msg" class="muted" style="margin:0 0 10px"></p>
+
+        <!-- Belangrijk: id toegevoegd en inline onsubmit verwijderd -->
+        <form id="signupForm" class="form">
           <div class="row"><label for="company">Bedrijfsnaam *</label><input id="company" name="company" required></div>
           <div class="row"><label for="vat">BTW-nummer *</label><input id="vat" name="vat" required></div>
           <div class="row"><label for="category">Categorie *</label>
@@ -145,7 +192,12 @@
   <script>
   async function getToken(){
     let u = netlifyIdentity.currentUser();
-    if(!u){ netlifyIdentity.open("login"); await new Promise(r=>netlifyIdentity.on("login", ()=>r())); u = netlifyIdentity.currentUser(); netlifyIdentity.close(); }
+    if(!u){
+      netlifyIdentity.open("login");
+      await new Promise(r => netlifyIdentity.on("login", ()=>r()));
+      u = netlifyIdentity.currentUser();
+      netlifyIdentity.close();
+    }
     return await u.jwt();
   }
 
@@ -164,6 +216,7 @@
     return res.secure_url || "";
   }
 
+  // Belangrijk: luister op het juiste formulier-id
   document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const f=e.target;
@@ -177,6 +230,7 @@
       intro:f.intro.value.trim()
     };
     try{
+      document.getElementById("msg").textContent="Even geduld… aanmelden wordt verwerkt.";
       const token = await getToken();
       const logoFile = document.getElementById("logo").files[0];
       const logo_url = await uploadLogo(logoFile, token);
@@ -194,14 +248,6 @@
       document.getElementById("msg").textContent="Kon niet aanmelden. Probeer opnieuw.";
     }
   });
-</script>
-
+  </script>
 </body>
 </html>
-.cards{grid-template-columns:1fr 1fr}
-.card{min-width:0}
-.steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.step{min-width:0}
-.step-sub{white-space:normal;overflow-wrap:anywhere}
-.stats{flex-wrap:wrap}
-@media (max-width:1000px){.steps{grid-template-columns:1fr}}
