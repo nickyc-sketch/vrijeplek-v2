@@ -1009,4 +1009,21 @@ input[type="date"]{
   .steps     { grid-template-columns: 1fr; }
   .form      { grid-template-columns: 1fr; }
 }
+.nav-btn.active,
+.nav-btn[aria-current="page"]{
+  background:#fff;
+  color:var(--ocean-900);
+  border-color:transparent;
+  box-shadow:var(--shadow);
+}
+
+.nav-btn.active::after,
+.nav-btn[aria-current="page"]::after{
+  content:"";
+  display:block;
+  height:2px;
+  background:var(--ocean-500);
+  margin-top:6px;
+  border-radius:999px;
+}
 
