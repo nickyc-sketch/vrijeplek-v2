@@ -1066,4 +1066,5 @@ input[type="date"]{
 
 /* fallback als er ergens mix-blend-mode of color: #fff op alle header-links staat */
 .site-header .main-nav .nav-btn{ mix-blend-mode:normal !important; }
+body.index .site-header{ background:rgba(255,255,255,.9) }
 
