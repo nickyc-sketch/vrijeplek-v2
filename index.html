@@ -144,5 +144,17 @@ input[type="date"]::-webkit-calendar-picker-indicator{opacity:1;display:block;cu
   </main>
 
   <script src="script.js"></script>
+  <script>
+(function(){
+  var path=location.pathname;
+  if(path==="/") path="/index.html";
+  document.querySelectorAll('.main-nav a.nav-btn').forEach(function(a){
+    var href=a.getAttribute('href');
+    var active=path.endsWith(href)||(href==="index.html"&&(path==="/index.html"||path==="/"));
+    if(active){a.classList.add('active');a.setAttribute('aria-current','page');}
+  });
+})();
+</script>
+
 </body>
 </html>
