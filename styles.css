@@ -1067,4 +1067,27 @@ input[type="date"]{
 /* fallback als er ergens mix-blend-mode of color: #fff op alle header-links staat */
 .site-header .main-nav .nav-btn{ mix-blend-mode:normal !important; }
 body.index .site-header{ background:rgba(255,255,255,.9) }
+.site-header .main-nav .nav-btn,
+.site-header .main-nav .nav-btn:link,
+.site-header .main-nav .nav-btn:visited{
+  color:#0f172a!important;
+  background:rgba(255,255,255,.95)!important;
+  border:1px solid rgba(2,6,23,.08)!important;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+.site-header .main-nav .nav-btn:hover{filter:brightness(.97)}
+.site-header .main-nav .nav-btn.active,
+.site-header .main-nav .nav-btn[aria-current="page"]{
+  background:#0ea5e9!important;
+  color:#fff!important;
+  border-color:transparent!important;
+  box-shadow:0 8px 30px rgba(2,12,27,.08);
+}
+.site-header .main-nav .nav-btn{mix-blend-mode:normal!important}
 
