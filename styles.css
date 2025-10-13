@@ -1030,4 +1030,11 @@ input[type="date"]{
 .nav-btn{color:#0f172a;text-decoration:none;padding:10px 14px;border-radius:999px;border:1px solid rgba(2,6,23,.08);font-weight:600;font-size:14px;transition:.2s;background:#ffffffcc;backdrop-filter:saturate(180%) blur(10px)}
 .nav-btn:hover{filter:brightness(.97)}
 .nav-btn.active,.nav-btn[aria-current="page"]{background:#0ea5e9;color:#fff;border-color:transparent;box-shadow:0 8px 30px rgba(2,12,27,.08)}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand-name{font-weight:700}
+.brand-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#0ea5e9;margin-left:6px}
+.main-nav{display:flex;gap:8px;align-items:center}
+.nav-btn{color:#0f172a;text-decoration:none;padding:10px 14px;border-radius:999px;border:1px solid rgba(2,6,23,.08);font-weight:600;font-size:14px;background:#ffffffcc;backdrop-filter:saturate(180%) blur(10px);transition:.2s}
+.nav-btn:hover{filter:brightness(.97)}
+.nav-btn.active,.nav-btn[aria-current="page"]{background:#0ea5e9;color:#fff;border-color:transparent;box-shadow:0 8px 30px rgba(2,12,27,.08)}
 
