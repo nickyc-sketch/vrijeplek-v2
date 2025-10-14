@@ -13,8 +13,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink-900);
       background:
         radial-gradient(1200px 800px at 80% -10%, rgba(255,255,255,.08), transparent 60%),
@@ -23,7 +22,7 @@
       display:grid; place-items:center; padding:24px;
     }
     .auth-wrap{
-      width:100%; max-width:520px;
+      width:100%; max-width:560px;
       background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.12));
       border:1px solid rgba(255,255,255,.25);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -36,14 +35,11 @@
       box-shadow:0 0 0 4px rgba(125,211,252,.25);}
     .auth-title{margin:0; font-size:1.5rem; line-height:1.2; font-weight:700; color:#fff;}
     .auth-sub{margin:6px 0 0 0; font-size:.95rem; color:rgba(255,255,255,.9);}
-    .auth-card{
-      background: var(--white); margin:20px; padding:22px;
-      border-radius: var(--radius); border:1px solid var(--ink-300);
-      box-shadow: 0 6px 24px rgba(2,12,27,.06);
-    }
+    .auth-card{background:#fff; margin:20px; padding:22px; border-radius: var(--radius);
+      border:1px solid var(--ink-300); box-shadow:0 6px 24px rgba(2,12,27,.06);}
     form{display:grid; gap:14px; margin-top:6px;}
     .grid-2{display:grid; gap:14px; grid-template-columns:1fr 1fr;}
-    @media (max-width:520px){ .grid-2{grid-template-columns:1fr;} }
+    @media (max-width:560px){ .grid-2{grid-template-columns:1fr;} }
     .field{display:grid; gap:8px;}
     label{font-size:.9rem; color:var(--ink-700);}
     .input{
@@ -53,24 +49,23 @@
     }
     .input::placeholder{color:#9aa6b2}
     .input:focus{border-color: var(--ocean-500); box-shadow: 0 0 0 4px rgba(14,165,233,.18);}
-    .row-between{display:flex; justify-content:space-between; align-items:center; gap:12px;}
-    .link{font-size:.92rem; color:var(--ocean-700); text-decoration:none;}
-    .link:hover{text-decoration:underline;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; width:100%;
       padding:12px 16px; border:none; border-radius:12px;
       background:linear-gradient(180deg, var(--ocean-500), var(--ocean-700));
       color:#fff; font-weight:600; font-size:1rem; cursor:pointer;
-      box-shadow: 0 8px 18px rgba(14,116,144,.28);
+      box-shadow:0 8px 18px rgba(14,116,144,.28);
       transition: transform .05s ease, filter .15s ease, box-shadow .15s ease;
     }
     .btn:hover{filter:brightness(1.05); box-shadow:0 10px 22px rgba(14,116,144,.32)}
     .btn:active{transform:translateY(1px)}
     .btn[disabled]{opacity:.6; cursor:not-allowed; box-shadow:none; filter:none}
-    .fineprint{margin-top:2px; font-size:.82rem; color:var(--ink-500);}
+    .fineprint{font-size:.82rem; color:var(--ink-500);}
     .error{font-size:.86rem; color:#b91c1c; display:none;}
-    .ok{color:#0f766e}
-    @media (max-width:420px){ .auth-header{padding:20px 20px 0 20px} .auth-card{margin:16px; padding:18px} }
+    .notice{
+      display:none; margin-top:6px; padding:10px 12px; border-radius:12px;
+      background:#ecfeff; border:1px solid #bae6fd; color:#075985; font-size:.92rem;
+    }
   </style>
 </head>
 <body>
@@ -81,11 +76,23 @@
         <span style="font-weight:700; letter-spacing:.3px;">VrijePlek</span>
       </div>
       <h1 id="registertitle" class="auth-title">Account aanmaken</h1>
-      <p class="auth-sub">Maak een nieuw account om te starten.</p>
+      <p class="auth-sub">Vul je bedrijfsgegevens in. We sturen je een bevestigingsmail.</p>
     </header>
 
     <section class="auth-card" aria-label="Registratieformulier">
       <form id="registerForm" method="post" action="/api/register" novalidate>
+        <div class="field">
+          <label for="company">Bedrijfsnaam</label>
+          <input class="input" id="company" name="company" type="text" placeholder="Jouw zaak bv. 'VrijePlek BV'" required />
+        </div>
+
+        <div class="field">
+          <label for="vat">BTW-nummer (BE)</label>
+          <input class="input" id="vat" name="vat" type="text" placeholder="BE0123456789" required />
+          <small class="fineprint">Formaat: <code>BE0123456789</code> (BE + 10 cijfers)</small>
+          <p id="vatmsg" class="error">Ongeldig btw-nummer. Gebruik "BE" gevolgd door 10 cijfers.</p>
+        </div>
+
         <div class="grid-2">
           <div class="field">
             <label for="voornaam">Voornaam</label>
@@ -114,21 +121,23 @@
         </div>
         <p id="pwmsg" class="error">Wachtwoorden komen niet overeen.</p>
 
-        <div class="field" style="margin-top:6px;">
-          <label style="display:flex; gap:10px; align-items:flex-start;">
-            <input id="agree" type="checkbox" style="margin-top:3px" />
-            <span class="fineprint">
-              Ik ga akkoord met de <a class="link" href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a>
-              en de <a class="link" href="/privacy" target="_blank" rel="noopener">privacyverklaring</a>.
-            </span>
-          </label>
-        </div>
+        <label style="display:flex; gap:10px; align-items:flex-start;">
+          <input id="agree" type="checkbox" style="margin-top:3px" />
+          <span class="fineprint">
+            Ik ga akkoord met de <a class="link" href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a>
+            en de <a class="link" href="/privacy" target="_blank" rel="noopener">privacyverklaring</a>.
+          </span>
+        </label>
 
         <button id="submitBtn" class="btn" type="submit" disabled>Account aanmaken</button>
 
-        <div class="row-between" style="margin-top:6px;">
+        <div id="notice" class="notice" role="status" aria-live="polite">
+          Als dit e-mailadres en btw-nummer geldig zijn, is er zojuist een bevestigingsmail verstuurd. Klik op de link in die e-mail om je account te activeren.
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <span class="fineprint">Heb je al een account?</span>
-          <a class="link" href="/login">Inloggen</a>
+          <a class="link" href="/login" style="color:var(--ocean-700); text-decoration:none;">Inloggen</a>
         </div>
       </form>
     </section>
@@ -139,26 +148,37 @@
       const form = document.getElementById('registerForm');
       const pass = document.getElementById('password');
       const confirm = document.getElementById('confirm');
-      const msg = document.getElementById('pwmsg');
+      const pwmsg = document.getElementById('pwmsg');
       const agree = document.getElementById('agree');
       const submit = document.getElementById('submitBtn');
+      const notice = document.getElementById('notice');
+      const vat = document.getElementById('vat');
+      const vatmsg = document.getElementById('vatmsg');
+
+      // Simpele BE VAT check: "BE" + 10 cijfers
+      const beVatRegex = /^BE\d{10}$/i;
 
       function validate() {
-        const match = pass.value === confirm.value && pass.value.length >= 8;
-        msg.style.display = match ? 'none' : 'block';
-        submit.disabled = !(match && agree.checked && form.checkValidity());
+        const pwOk = pass.value.length >= 8 && pass.value === confirm.value;
+        pwmsg.style.display = pwOk ? 'none' : 'block';
+
+        const vatOk = beVatRegex.test(vat.value.replace(/\s+/g,''));
+        vatmsg.style.display = vatOk ? 'none' : 'block';
+
+        submit.disabled = !(pwOk && vatOk && agree.checked && form.checkValidity());
       }
 
       pass.addEventListener('input', validate);
       confirm.addEventListener('input', validate);
+      vat.addEventListener('input', (e)=>{ e.target.value = e.target.value.toUpperCase(); validate(); });
       agree.addEventListener('change', validate);
       form.addEventListener('input', validate);
 
       form.addEventListener('submit', (e) => {
-        if (submit.disabled) e.preventDefault();
+        // Laat je eigen submit doorgaan; toon meteen notice
+        setTimeout(()=>{ notice.style.display='block'; }, 0);
       });
 
-      // initial
       validate();
     })();
   </script>
