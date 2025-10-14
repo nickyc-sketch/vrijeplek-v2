@@ -1,34 +1,34 @@
-
+# ===== Build =====
 [build]
   publish = "."
-  functions = "functions"
 
+[build.environment]
+  NODE_VERSION = "20"
+
+# ===== Functions =====
 [functions]
+  directory = "netlify/functions"        # << gebruik deze map
   node_bundler = "esbuild"
-  external_node_modules = ["stripe", "nodemailer", "node-fetch", "mongodb"]
+  external_node_modules = [
+    "stripe",
+    "nodemailer",
+    "node-fetch",
+    "mongodb",
+    "resend",
+    "@netlify/blobs"
+  ]
 
-
+# ===== Redirects =====
+# 1 wildcard is genoeg; dekt /api/register, /api/confirm, etc.
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
+# ===== Security headers =====
 [[headers]]
   for = "/*"
   [headers.values]
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/api/register"
-  to = "/.netlify/functions/register"
-  status = 200
-
-[[redirects]]
-  from = "/api/confirm"
-  to = "/.netlify/functions/confirm"
-  status = 200
-
+    X-Content-Type-Options = "nosniff"
