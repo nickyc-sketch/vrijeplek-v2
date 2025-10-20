@@ -39,7 +39,7 @@ function buildWelcomeEmailHTML({ name, email, vat }) {
 }
 
 async function sendMail({ to, subject, html, replyTo }) {
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM || "no-reply@yourdomain.com";
+  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM || "no-reply@vrijeplek.be";
 
   // 1) Probeer Resend
   if (process.env.RESEND_API_KEY) {
