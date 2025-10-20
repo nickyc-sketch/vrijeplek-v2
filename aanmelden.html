@@ -182,5 +182,27 @@
       validate();
     })();
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#aanmeldenForm'); // pas aan naar jouw form id
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const payload = { name: data.name || data.naam || "", email: data.email || "", vat: data.vat || data.btw || "" };
+
+    const resp = await fetch('/api/business-create', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const j = await resp.json().catch(()=>({}));
+
+    if (!resp.ok || j.ok === false) { alert(j.error || 'Er ging iets mis'); return; }
+    window.location.href = '/bevestiging.html'; // << belangrijk
+  });
+});
+</script>
+
 </body>
 </html>
