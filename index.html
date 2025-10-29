@@ -237,5 +237,35 @@ input[type="date"]::-webkit-calendar-picker-indicator{opacity:1;display:block;cu
   });
 })();
 </script>
+  <script src="/script.js"></script>
+
+<!-- klikbare categorieën vullen automatisch het veld -->
+<script>
+(function(){
+  const catInput = document.getElementById('cat');
+  document.querySelectorAll('.catdot').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      const val = el.getAttribute('data-cat') || '';
+      if (catInput){
+        if (catInput.tagName.toLowerCase()==='select'){
+          const opt=[...catInput.options].find(o=>o.value.toLowerCase()===val.toLowerCase());
+          if(opt){ opt.selected=true; } else { catInput.add(new Option(val,val,true,true)); }
+        } else { catInput.value = val; }
+      }
+    });
+  });
+})();
+</script>
+
+<!-- bestaande active-nav script blijft -->
+<script>
+  (function(){
+    var path = location.pathname;
+    ...
+  })();
+</script>
+</body>
+</html>
+
 </body>
 </html>
