@@ -1196,4 +1196,44 @@ body.index .site-header{ background:rgba(255,255,255,.9) }
 
 .header-actions .nav-btn:hover{filter:brightness(.98)}
 .header-actions .nav-btn:active{transform:translateY(1px)}
+  /* Vrijeplek — ronde categorie-foto's (ocean-stijl) */
+.cat-dots{padding:10px 0}
+.cat-dots .container{max-width:1100px;margin:0 auto;padding:0 16px}
+.cat-dots-row{
+  list-style:none;margin:0;padding:6px 2px;
+  display:flex;align-items:center;gap:14px;
+  overflow-x:auto;scrollbar-width:none;
+  mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%);
+}
+.cat-dots-row::-webkit-scrollbar{display:none}
+
+.catdot{
+  --size:68px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  text-decoration:none
+}
+.catdot img{
+  width:var(--size);height:var(--size);border-radius:50%;object-fit:cover;display:block;
+  box-shadow:
+    0 0 0 2px rgba(14,165,233,.4),          /* ocean outer */
+    inset 0 0 0 2px rgba(255,255,255,.9),   /* inner glass ring */
+    0 8px 20px rgba(2,12,27,.12);
+  transition:transform .18s ease, box-shadow .18s ease
+}
+.catdot:hover img{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 0 2px rgba(14,165,233,.65),
+    inset 0 0 0 2px rgba(255,255,255,1),
+    0 12px 24px rgba(2,12,27,.16)
+}
+.catdot span{
+  font-size:12px;font-weight:700;color:#0f172a;letter-spacing:.2px
+}
+
+@media (min-width:960px){
+  .cat-dots-row{justify-content:center;overflow:visible;mask-image:none}
+  .catdot{--size:76px}
+}
+
 
