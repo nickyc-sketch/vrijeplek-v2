@@ -1,26 +1,25 @@
-<!doctype html><html lang="nl"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aanmelden – Vrijeplek</title>
-<link rel="stylesheet" href="/styles.css?v=14">
-</head><body>
-  <main class="section"><div class="container" style="max-width:680px">
-    <h1>Account aanmaken</h1>
-    <form id="form-aanmelden">
-      <input name="full_name" type="text" placeholder="Naam">
-      <input name="email" type="email" placeholder="E-mail" required>
-      <input name="password" type="password" placeholder="Wachtwoord" required>
-      <button type="submit">Account aanmaken</button>
-    </form>
-
-    <div id="status" style="margin-top:16px; display:none"></div>
-
-    <div id="resend" style="margin-top:16px; display:none">
-      <button id="resend-btn" type="button">Bevestigingsmail opnieuw sturen</button>
-      <a class="btn" href="/login.html" style="margin-left:8px">Naar inloggen</a>
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account aanmaken</title>
+  <link rel="stylesheet" href="/styles.css?v=14">
+</head>
+<body>
+  <main class="section">
+    <div class="container" style="max-width:680px">
+      <h1>Account aanmaken</h1>
+      <form id="form-aanmelden">
+        <input name="full_name" type="text" placeholder="Naam">
+        <input name="email" type="email" placeholder="E-mail" required>
+        <input name="password" type="password" placeholder="Wachtwoord" required>
+        <button type="submit">Account aanmaken</button>
+      </form>
     </div>
-  </div></main>
+  </main>
 
-  <!-- alleen deze 2 scripts -->
+  <!-- enkel deze twee scripts -->
   <script src="/scripts/client.js"></script>
   <script>
   document.addEventListener('submit', async (e) => {
@@ -28,42 +27,27 @@
     if (!f.matches('#form-aanmelden')) return;
     e.preventDefault();
 
-    const email = f.email.value.trim();
     const body = {
-      email,
+      email: f.email.value.trim(),
       password: f.password.value,
       full_name: f.full_name?.value?.trim() || null
     };
 
     const res = await fetch('/.netlify/functions/signup', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
     const j = await res.json();
 
-    const status = document.getElementById('status');
-    const resendWrap = document.getElementById('resend');
     if (!res.ok) {
-      status.style.display = 'block';
-      status.textContent = j.error || 'Er ging iets mis bij aanmelden.';
-      resendWrap.style.display = 'none';
+      alert(j.error || 'Er ging iets mis bij aanmelden.');
       return;
     }
-    // hier ben je klaar: mail is verstuurd door Supabase
-    status.style.display = 'block';
-    status.textContent = 'We hebben je een bevestigingsmail gestuurd. Klik op de link in die mail om je account te activeren.';
-    resendWrap.style.display = 'block';
 
-    // "opnieuw sturen" knop
-    document.getElementById('resend-btn').onclick = async () => {
-      const r = await fetch('/.netlify/functions/resend-confirmation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      const rr = await r.json();
-      alert(r.ok ? 'Mail opnieuw verzonden.' : (rr.error || 'Kon niet opnieuw versturen.'));
-    };
+    // klaar, doorgaan naar bevestigen-pagina
+    window.location.href = '/bevestigen.html';
   });
   </script>
-</body></html>
+</body>
+</html>
