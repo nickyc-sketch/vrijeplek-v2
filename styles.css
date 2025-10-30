@@ -511,3 +511,5 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   .cta-row{flex-direction:column;gap:10px}
   .cta-row .btn{width:100%;max-width:280px;height:44px}
 }
+.cta-row .btn:empty{display:none}
+.cta-row .btn{min-width:0}
