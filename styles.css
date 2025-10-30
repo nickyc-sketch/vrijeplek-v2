@@ -269,3 +269,70 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
     justify-content: center;
   }
 }
+/* === RESPONSIVE TYPOGRAFIE + ICON FIX === */
+@media (max-width: 820px) {
+
+  /* Hero-titel en subtitel */
+  .hero h1 {
+    font-size: clamp(22px, 6vw, 28px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero .sub {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 16px;
+  }
+
+  /* Iconen en tekst in kaarten of categorieën */
+  .cat-dots-row {
+    gap: 10px;
+    padding: 4px 0;
+  }
+
+  .catdot {
+    --size: 60px;
+  }
+
+  .catdot img {
+    width: var(--size);
+    height: var(--size);
+    box-shadow: 0 3px 8px rgba(2,12,27,.1);
+  }
+
+  .catdot span {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Algemene tekst iets kleiner */
+  body {
+    font-size: 15px;
+  }
+
+  /* Kaarten en iconen */
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .card-icon {
+    font-size: 22px;
+  }
+  .card-title {
+    font-size: 16px;
+  }
+  .card-text {
+    font-size: 13px;
+  }
+
+  /* Footer tekst centreren en verkleinen */
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+  .footer-inner p,
+  .footer-nav a {
+    font-size: 13px;
+  }
+}
