@@ -1,12 +1,26 @@
-<!DOCTYPE html><html lang='nl'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Hoe werkt Vrijeplek?</title><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'><style>:root{--ocean-900:#0c4a6e;--ocean-500:#0ea5e9;--shadow:0 8px 30px rgba(2,12,27,.08)}*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;background:#f8fafc;color:#0f172a}.site-header{background:linear-gradient(to right,rgba(12,74,110,.94),rgba(14,116,144,.94));padding:12px 0}.brand{color:#fff;font-weight:700;text-decoration:none;margin-left:20px}.container{width:min(1120px,92%);margin:0 auto;padding:20px}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.card{background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}.btn{display:inline-flex;padding:10px 16px;border-radius:10px;background:linear-gradient(180deg,var(--ocean-500),#0e7490);color:#fff;text-decoration:none;font-weight:700}</style></head><body><header class='site-header'><a class='brand' href='index.html'>Vrijeplek</a></header><main class='container'><h1>Hoe werkt Vrijeplek?</h1><p>Zo vul je lege momenten met boekingen uit je buurt.</p><div class='grid'><div class='card'><h2>1. Kies momenten</h2><p>Selecteer lege uren.</p></div><div class='card'><h2>2. Koppel dienst</h2><p>Kies je dienst (knippen, massage, …).</p></div><div class='card'><h2>3. Publiceer</h2><p>Publiceer je tijdsloten.</p></div><div class='card'><h2>4. Krijg boekingen</h2><p>Ontvang aanvragen en bevestig per e‑mail.</p></div></div><p style='margin-top:14px'><a class='btn' href='aanmelden.html'>Word lid van Vrijeplek</a></p></main><script>
-(function(){
-  var path=location.pathname;
-  if(path==="/") path="/index.html";
-  document.querySelectorAll('.main-nav a.nav-btn').forEach(function(a){
-    var href=a.getAttribute('href');
-    var active=path.endsWith(href)||(href==="index.html"&&(path==="/index.html"||path==="/"));
-    if(active){a.classList.add('active');a.setAttribute('aria-current','page');}
-  });
-})();
-</script>
-</body></html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hoe werkt Vrijeplek?</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css?v=14">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="/img/logo.svg" alt="Vrijeplek" class="logo">
+        <span class="brand-name">Vrijeplek</span>
+        <span class="brand-dot"></span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="hoe.html" class="nav-btn active" aria-current="page">Hoe werkt het</a>
+        <a href="aanmelden.html" class="nav-btn">Aanmelden</a>
+        <a href="login.html" class="nav-btn">Logi
