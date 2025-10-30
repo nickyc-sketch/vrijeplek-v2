@@ -97,3 +97,34 @@
   </footer>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // VUL DIT IN met jouw echte waardes
+  const SUPABASE_URL = "https://xdmrikvxyeebeusnbzav.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkbXJpa3Z4eWVlYmV1c25iemF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4Mjc5MjgsImV4cCI6MjA3NzQwMzkyOH0.WmOMDZoFSk9RwQE1lT9yUuOCwsMjZbKVQrtNpBflpB0";
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Form velden (pas de IDs aan als jij andere gebruikt)
+  const form = document.getElementById("loginForm");
+  const emailEl = document.getElementById("email");
+  const passEl  = document.getElementById("password");
+  const errEl   = document.getElementById("loginError"); // <small id="loginError"></small> mag je toevoegen
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errEl && (errEl.textContent = "");
+
+    const email = emailEl.value.trim();
+    const password = passEl.value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      errEl && (errEl.textContent = error.message || "Login mislukt");
+      return;
+    }
+
+    // <<< HIER IS DE FIX >>>
+    window.location.href = "/dashboard.html";  // exact zo met .html en leading slash
+  });
+</script>
