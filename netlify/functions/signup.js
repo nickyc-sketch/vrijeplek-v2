@@ -1,4 +1,4 @@
-// netlify/functions/signup.js
+const redirect = 'https://vrijeplekv2.netlify.app/geactiveerd.html';
 import { getClient, json } from './_lib/db.js';
 
 export const handler = async (event) => {
