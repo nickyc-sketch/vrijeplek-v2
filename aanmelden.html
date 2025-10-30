@@ -204,6 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script>
+document.querySelectorAll('.cta-row .btn').forEach(b=>{
+  if(!b.textContent.trim()) b.remove();
+});
+</script>
 
 </body>
 </html>
