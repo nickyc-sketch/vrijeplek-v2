@@ -1,177 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Vrijeplek</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css?v=14">
+
   <style>
-    /* Ocean palette + basics (valt terug op nette defaults als je al variabelen hebt) */
-    :root{
-      --ocean-900:#0c4a6e; --ocean-700:#0e7490; --ocean-500:#0ea5e9; --ocean-300:#7dd3fc;
-      --ink-900:#0f172a; --ink-700:#334155; --ink-500:#64748b; --ink-300:#cbd5e1;
-      --bg:#f8fafc; --white:#ffffff; --radius:16px; --shadow:0 12px 40px rgba(2,12,27,.14);
-    }
-    *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--ink-900);
-      /* Ocean blue gradient achtergrond */
-      background:
-        radial-gradient(1200px 800px at 80% -10%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(1000px 600px at 10% 110%, rgba(255,255,255,.06), transparent 60%),
-        linear-gradient(135deg, var(--ocean-900), var(--ocean-700) 55%, var(--ocean-500));
-      display:grid;
-      place-items:center;
-      padding:24px;
-    }
-
-    .auth-wrap{
-      width:100%;
-      max-width:420px;
-      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.12));
-      border:1px solid rgba(255,255,255,.25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: calc(var(--radius) + 4px);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-
-    .auth-header{
-      padding:28px 28px 0 28px;
-      color:#fff;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:12px;
-    }
-    .brand .dot{
-      width:12px;height:12px;border-radius:999px;background:var(--ocean-300);
-      box-shadow:0 0 0 4px rgba(125,211,252,.25);
-    }
-    .auth-title{
-      margin:0;
-      font-size:1.5rem;
-      line-height:1.2;
-      font-weight:700;
-      letter-spacing:.2px;
-      color:#fff;
-    }
-    .auth-sub{
-      margin:6px 0 0 0;
-      font-size:.95rem;
-      color:rgba(255,255,255,.9);
-    }
-
-    .auth-card{
-      background: var(--white);
-      margin:20px;
-      padding:22px;
-      border-radius: var(--radius);
-      border:1px solid var(--ink-300);
-      box-shadow: 0 6px 24px rgba(2,12,27,.06);
-    }
-
-    form{display:grid; gap:14px; margin-top:6px;}
-    .field{display:grid; gap:8px;}
-    label{
-      font-size:.9rem;
-      color:var(--ink-700);
-    }
-    .input{
-      width:100%;
-      padding:12px 14px;
-      font-size:1rem;
-      border:1px solid var(--ink-300);
-      border-radius:12px;
-      background:#fff;
-      color:var(--ink-900);
-      outline:none;
-      transition:border-color .15s ease, box-shadow .15s ease;
-    }
-    .input::placeholder{color:#9aa6b2}
-    .input:focus{
-      border-color: var(--ocean-500);
-      box-shadow: 0 0 0 4px rgba(14,165,233,.18);
-    }
-
-    .row-between{
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      margin-top:2px;
-    }
-    .link{
-      font-size:.92rem;
-      color:var(--ocean-700);
-      text-decoration:none;
-    }
-    .link:hover{ text-decoration:underline; }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:100%;
-      padding:12px 16px;
-      border:none; border-radius:12px;
-      background:linear-gradient(180deg, var(--ocean-500), var(--ocean-700));
-      color:#fff; font-weight:600; font-size:1rem;
-      cursor:pointer;
-      box-shadow: 0 8px 18px rgba(14,116,144,.28);
-      transition: transform .05s ease, filter .15s ease, box-shadow .15s ease;
-    }
-    .btn:hover{ filter:brightness(1.05); box-shadow: 0 10px 22px rgba(14,116,144,.32); }
-    .btn:active{ transform: translateY(1px); }
-
-    .fineprint{
-      margin-top:10px;
-      font-size:.82rem;
-      color:var(--ink-500);
-      text-align:center;
-    }
-
-    /* Kleine schermen */
-    @media (max-width:420px){
-      .auth-header{ padding:20px 20px 0 20px; }
-      .auth-card{ margin:16px; padding:18px; }
+    body{min-height:100dvh;display:flex;flex-direction:column}
+    .auth-hero{background:linear-gradient(135deg,#0c4a6e,#0e7490 55%,#0ea5e9);padding:28px 0}
+    .auth-wrap{width:100%;max-width:420px;margin:24px auto;background:#fff;border:1px solid #dbe7f3;border-radius:16px;box-shadow:0 12px 40px rgba(2,12,27,.14)}
+    .auth-head{padding:20px 20px 0 20px;color:#fff}
+    .auth-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;text-decoration:none}
+    .auth-brand .dot{width:10px;height:10px;border-radius:999px;background:#7dd3fc;box-shadow:0 0 0 4px rgba(125,211,252,.25)}
+    .auth-title{margin:12px 0 6px 0;color:#fff;font-size:1.5rem;line-height:1.2;font-weight:700}
+    .auth-sub{margin:0;color:rgba(255,255,255,.9)}
+    .auth-card{background:#fff;margin:20px;border:1px solid #e6eef6;border-radius:16px;box-shadow:0 6px 24px rgba(2,12,27,.06);padding:22px}
+    .auth-form{display:grid;gap:14px;margin-top:6px}
+    .auth-field{display:grid;gap:8px}
+    .auth-label{font-size:.92rem;color:#334155}
+    .auth-input{width:100%;height:44px;padding:0 14px;border:1px solid #dbe7f3;border-radius:12px;background:#fff;font-size:1rem;outline:0;transition:border-color .15s,box-shadow .15s}
+    .auth-input::placeholder{color:#9aa6b2}
+    .auth-input:focus{border-color:#0ea5e9;box-shadow:0 0 0 4px rgba(14,165,233,.18)}
+    .auth-link{font-size:.92rem;color:#0e7490;text-decoration:none}
+    .auth-link:hover{text-decoration:underline}
+    .auth-actions{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+    .auth-btn{display:inline-flex;align-items:center;justify-content:center;width:100%;height:46px;padding:0 16px;border:0;border-radius:12px;background:linear-gradient(180deg,#0ea5e9,#0e7490);color:#fff;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 8px 18px rgba(14,116,144,.28)}
+    .auth-fine{margin-top:10px;font-size:.82rem;color:#64748b;text-align:center}
+    @media (max-width:480px){
+      .auth-wrap{max-width:94%}
+      .auth-card{margin:14px;padding:18px}
     }
   </style>
 </head>
-<body>
-  <main class="auth-wrap" role="main" aria-labelledby="logintitle">
-    <header class="auth-header">
-      <div class="brand" aria-hidden="true">
-        <span class="dot"></span>
-        <span style="font-weight:700; letter-spacing:.3px;">VrijePlek</span>
+<body class="page-login">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;">
+        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
+      </a>
+      <nav class="header-actions">
+        <a class="nav-btn" href="waarom.html">Waarom Vrijeplek?</a>
+        <a class="nav-btn" href="hoe.html">Hoe werkt het?</a>
+        <a class="nav-btn" href="aanmelden.html">Word lid van Vrijeplek</a>
+        <a class="nav-btn active" aria-current="page" href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="auth-hero">
+    <div class="container">
+      <div class="auth-wrap" role="main" aria-labelledby="logintitle">
+        <div class="auth-head">
+          <a class="auth-brand" href="index.html" aria-label="Vrijeplek">
+            <span class="dot"></span><span>Vrijeplek</span>
+          </a>
+          <h1 id="logintitle" class="auth-title">Welkom terug</h1>
+          <p class="auth-sub">Log in om verder te gaan.</p>
+        </div>
+        <div class="auth-card" aria-label="Loginformulier">
+          <form class="auth-form" method="post" action="/api/login">
+            <div class="auth-field">
+              <label class="auth-label" for="email">E-mailadres</label>
+              <input class="auth-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jij@bedrijf.be" required>
+            </div>
+            <div class="auth-field">
+              <label class="auth-label" for="password">Wachtwoord</label>
+              <input class="auth-input" id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+            </div>
+            <div class="auth-actions">
+              <a class="auth-link" href="/wachtwoord-vergeten">Wachtwoord vergeten?</a>
+            </div>
+            <button class="auth-btn" type="submit">Login</button>
+            <p class="auth-fine">Door in te loggen ga je akkoord met de gebruiksvoorwaarden en privacyverklaring.</p>
+          </form>
+        </div>
       </div>
-      <h1 id="logintitle" class="auth-title">Welkom terug</h1>
-      <p class="auth-sub">Log in om verder te gaan.</p>
-    </header>
+    </div>
+  </section>
 
-    <section class="auth-card" aria-label="Loginformulier">
-      <form method="post" action="/api/login">
-        <div class="field">
-          <label for="email">E-mailadres</label>
-          <input class="input" id="email" name="email" type="email" inputmode="email"
-                 autocomplete="email" placeholder="jij@bedrijf.be" required />
-        </div>
-
-        <div class="field">
-          <label for="password">Wachtwoord</label>
-          <input class="input" id="password" name="password" type="password"
-                 autocomplete="current-password" placeholder="••••••••" required />
-        </div>
-
-        <div class="row-between">
-          <a class="link" href="/wachtwoord-vergeten">Wachtwoord vergeten?</a>
-        </div>
-
-        <button class="btn" type="submit">Login</button>
-
-        <p class="fineprint">Door in te loggen ga je akkoord met de gebruiksvoorwaarden en privacyverklaring.</p>
-      </form>
-    </section>
-  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Vrijeplek. Alle rechten voorbehouden.</p>
+      <nav class="footer-nav">
+        <a href="voorwaarden.html" class="link">Voorwaarden</a>
+        <a href="privacy.html" class="link">Privacy</a>
+        <a href="contact.html" class="link">Contact</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
