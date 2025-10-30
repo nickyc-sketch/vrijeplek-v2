@@ -1,60 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vrijeplek — Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    .wrap{max-width:1080px;margin:0 auto;padding:20px}
-    .card{background:#fff;border:1px solid #e8eff7;border-radius:16px;box-shadow:0 8px 22px rgba(2,6,23,.06);padding:16px}
-    .kpis{display:flex;gap:12px;flex-wrap:wrap}
-    .kpi{min-width:160px;border:1px solid #e8eff7;border-radius:12px;padding:12px}
-    .num{font-size:28px;font-weight:700}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mijn dashboard – Vrijeplek</title>
   <link rel="stylesheet" href="/styles.css?v=14">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ocean-900:#0c4a6e; --ocean-700:#0e7490; --ocean-500:#0ea5e9; --ocean-300:#7dd3fc;
+      --ink-900:#0f172a; --ink-700:#334155; --ink-500:#64748b; --ink-300:#cbd5e1;
+      --bg:#f8fafc; --white:#ffffff; --radius:18px; --shadow:0 16px 48px rgba(2,8,20,.10);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink-900);}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eef2f7}
+    .container{max-width:1100px;margin:0 auto;padding:18px 20px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--ocean-500)}
+    h1{font-size:24px;margin:16px 0}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+    .card{background:#fff;border:1px solid #eef2f7;border-radius:16px;box-shadow:var(--shadow);padding:18px}
+    .kpi{font-size:28px;font-weight:800}
+    .muted{color:var(--ink-500);font-size:13px}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ocean-700);color:#fff;border:0;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;transition:filter .15s;text-decoration:none}
+    .btn:hover{filter:brightness(1.05)}
+    .btn-secondary{background:#e2e8f0;color:#0f172a}
+    dl{margin:0}
+    dt{font-size:12px;color:var(--ink-500)}
+    dd{margin:2px 0 10px 0}
+    .right{display:flex;gap:10px;align-items:center;margin-left:auto}
+    .hidden{display:none !important}
+    .err{color:#b91c1c;font-size:14px}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand" style="text-decoration:none;">
-        <span class="brand-name">Vrijeplek</span><span class="brand-dot"></span>
-      </a>
+  <header>
+    <div class="container row">
+      <a class="brand" href="/index.html"><span class="dot"></span><strong>Vrijeplek</strong></a>
+      <div class="right">
+        <button id="logoutBtn" class="btn btn-secondary">Uitloggen</button>
+      </div>
     </div>
   </header>
-  <main class="wrap">
-    <div class="card">
-      <h1>Dashboard</h1>
-      <div id="me" style="color:#64748b"></div>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h3>Statistieken</h3>
-      <div class="kpis">
-        <div class="kpi"><div>Weergaven (totaal)</div><div class="num" id="vt">—</div></div>
-        <div class="kpi"><div>Rating</div><div class="num" id="ra">—</div></div>
-        <div class="kpi"><div>Reviews</div><div class="num" id="rc">—</div></div>
+
+  <main class="container">
+    <h1>Mijn dashboard</h1>
+
+    <div id="errorBox" class="err hidden"></div>
+
+    <section class="grid" style="margin-top:18px">
+      <!-- Profiel -->
+      <div class="card">
+        <h3 style="margin:0 0 12px 0">Profiel</h3>
+        <dl>
+          <dt>Naam</dt><dd id="pf-name">—</dd>
+          <dt>E-mail</dt><dd id="pf-email">—</dd>
+          <dt>Bedrijf</dt><dd id="pf-company">—</dd>
+          <dt>BTW-nummer</dt><dd id="pf-vat">—</dd>
+        </dl>
+        <div class="row">
+          <a class="btn btn-secondary" id="editProfileBtn" href="javascript:void(0)">Profiel bewerken</a>
+          <a class="btn" id="choosePlanBtn" href="/abonnement.html">Kies abonnement</a>
+        </div>
+        <p class="muted" style="margin-top:10px">Tip: nog geen mail gehad? Kijk je spam na of vraag opnieuw bij Inloggen.</p>
       </div>
-      <ul id="list"></ul>
-      <button id="logout" class="btn" style="margin-top:10px">Uitloggen</button>
-    </div>
+
+      <!-- Voorbeeld KPI's (placeholder) -->
+      <div class="card">
+        <h3 style="margin:0 0 12px 0">Status</h3>
+        <div class="row">
+          <div>
+            <div class="kpi" id="kpi-views">0</div>
+            <div class="muted">Profielweergaven</div>
+          </div>
+          <div>
+            <div class="kpi" id="kpi-bookings">0</div>
+            <div class="muted">Boekingen</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:10px">Deze cijfers zijn placeholders. We kunnen later koppelen met jouw functions.</p>
+      </div>
+
+      <!-- Acties -->
+      <div class="card">
+        <h3 style="margin:0 0 12px 0">Snelle acties</h3>
+        <div class="row">
+          <a class="btn" href="/slots.html">Slots beheren</a>
+          <a class="btn" href="/reviews.html">Reviews bekijken</a>
+          <a class="btn" href="/bedrijf.html">Bedrijfsgegevens</a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Supabase bootstrap -->
+  <script src="/scripts/client.js"></script>
   <script>
-    async function token(){ let u=netlifyIdentity.currentUser(); if(!u){ location.href="/aanmelden.html"; return null; } return await u.jwt(); }
-    async function load(){
-      const t = await token(); if(!t) return;
-      document.getElementById("me").textContent = netlifyIdentity.currentUser().email;
-      const r = await fetch("/.netlify/functions/business-mine",{ headers:{ "Authorization":"Bearer "+t }}).then(r=>r.json());
-      const b = r.items && r.items[0];
-      if(!b){ document.getElementById("list").innerHTML="<li>Nog geen bedrijfsprofiel.</li>"; return; }
-      document.getElementById("vt").textContent = b.views_total ?? 0;
-      document.getElementById("ra").textContent = (b.rating_avg ?? 0).toFixed(1);
-      document.getElementById("rc").textContent = b.reviews_count ?? 0;
-      document.getElementById("list").innerHTML = `<li><strong>${b.name}</strong> — ${b.category} • ${b.address}</li>`;
+  (async () => {
+    try {
+      await window.__vp.ready;
+
+      // 1) Guard: ingelogd?
+      const { data } = await window.supabaseClient.auth.getSession();
+      const session = data?.session;
+      if (!session) { location.href = '/login.html'; return; }
+
+      const token = session.access_token;
+      const headers = { Authorization: 'Bearer ' + token };
+
+      // 2) Haal profiel via je function /me
+      const r = await fetch('/.netlify/functions/me', { headers });
+      if (!r.ok) {
+        const t = await r.text();
+        document.getElementById('errorBox').classList.remove('hidden');
+        document.getElementById('errorBox').textContent = 'Kon profiel niet ophalen ('+r.status+'): ' + t;
+        return;
+      }
+      const j = await r.json();
+      const u = j.user || {};
+      const p = j.profiel || j.profile || {}; // afhankelijk van jouw me.js
+
+      // 3) Render profiel
+      document.getElementById('pf-name').textContent = p.full_name || u.user_metadata?.full_name || '—';
+      document.getElementById('pf-email').textContent = u.email || '—';
+      document.getElementById('pf-company').textContent = p.company || '—';
+      document.getElementById('pf-vat').textContent = p.vat || '—';
+
+      // 4) (optioneel) placeholders KPI's
+      document.getElementById('kpi-views').textContent = p.views ?? 0;
+      document.getElementById('kpi-bookings').textContent = p.bookings ?? 0;
+
+      // 5) Knoppen
+      document.getElementById('logoutBtn').onclick = async () => {
+        await window.supabaseClient.auth.signOut();
+        location.href = '/login.html';
+      };
+      document.getElementById('editProfileBtn').onclick = () => {
+        alert('Profiel bewerken komt hier (we kunnen een modaal of aparte pagina maken).');
+      };
+
+    } catch (e) {
+      const box = document.getElementById('errorBox');
+      box.classList.remove('hidden');
+      box.textContent = 'Fout: ' + (e?.message || e);
     }
-    document.getElementById("logout").onclick = ()=>{ netlifyIdentity.logout(); location.href="/"; };
-    netlifyIdentity.on("init", load); netlifyIdentity.init();
+  })();
   </script>
 </body>
 </html>
