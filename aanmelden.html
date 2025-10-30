@@ -1,72 +1,45 @@
 <!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Account aanmaken</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account aanmaken — Vrijeplek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=14">
   <style>
-    :root{
-      --ocean-900:#0c4a6e; --ocean-700:#0e7490; --ocean-500:#0ea5e9; --ocean-300:#7dd3fc;
-      --ink-900:#0f172a; --ink-700:#334155; --ink-500:#64748b; --ink-300:#cbd5e1;
-      --bg:#f8fafc; --white:#ffffff; --radius:16px; --shadow:0 12px 40px rgba(2,12,27,.14);
-    }
-    *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--ink-900);
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;
       background:
         radial-gradient(1200px 800px at 80% -10%, rgba(255,255,255,.08), transparent 60%),
         radial-gradient(1000px 600px at 10% 110%, rgba(255,255,255,.06), transparent 60%),
-        linear-gradient(135deg, var(--ocean-900), var(--ocean-700) 55%, var(--ocean-500));
-      display:grid; place-items:center; padding:24px;
+        linear-gradient(135deg,#0c4a6e,#0e7490 55%,#0ea5e9);
+      display:grid;place-items:center;padding:24px
     }
-    .auth-wrap{
-      width:100%; max-width:560px;
-      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.12));
-      border:1px solid rgba(255,255,255,.25);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-radius: calc(var(--radius) + 4px);
-      box-shadow: var(--shadow); overflow:hidden;
-    }
-    .auth-header{padding:28px 28px 0 28px; color:#fff;}
-    .brand{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
-    .brand .dot{width:12px;height:12px;border-radius:999px;background:var(--ocean-300);
-      box-shadow:0 0 0 4px rgba(125,211,252,.25);}
-    .auth-title{margin:0; font-size:1.5rem; line-height:1.2; font-weight:700; color:#fff;}
-    .auth-sub{margin:6px 0 0 0; font-size:.95rem; color:rgba(255,255,255,.9);}
-    .auth-card{background:#fff; margin:20px; padding:22px; border-radius: var(--radius);
-      border:1px solid var(--ink-300); box-shadow:0 6px 24px rgba(2,12,27,.06);}
-    form{display:grid; gap:14px; margin-top:6px;}
-    .grid-2{display:grid; gap:14px; grid-template-columns:1fr 1fr;}
-    @media (max-width:560px){ .grid-2{grid-template-columns:1fr;} }
-    .field{display:grid; gap:8px;}
-    label{font-size:.9rem; color:var(--ink-700);}
-    .input{
-      width:100%; padding:12px 14px; font-size:1rem;
-      border:1px solid var(--ink-300); border-radius:12px; background:#fff; color:var(--ink-900);
-      outline:none; transition:border-color .15s ease, box-shadow .15s ease;
-    }
+    .auth-wrap{width:100%;max-width:560px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;box-shadow:0 12px 40px rgba(2,12,27,.14);overflow:hidden}
+    .auth-header{padding:28px 28px 0;color:#fff}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .brand .dot{width:12px;height:12px;border-radius:999px;background:#7dd3fc;box-shadow:0 0 0 4px rgba(125,211,252,.25)}
+    .auth-title{margin:0;font-size:1.5rem;line-height:1.2;font-weight:700;color:#fff}
+    .auth-sub{margin:6px 0 0;font-size:.95rem;color:rgba(255,255,255,.9)}
+    .auth-card{background:#fff;margin:20px;padding:22px;border-radius:16px;border:1px solid #cbd5e1;box-shadow:0 6px 24px rgba(2,12,27,.06)}
+    form{display:grid;gap:14px;margin-top:6px}
+    .grid-2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+    @media (max-width:560px){.grid-2{grid-template-columns:1fr}}
+    .field{display:grid;gap:8px}
+    label{font-size:.9rem;color:#334155}
+    .input{width:100%;padding:12px 14px;font-size:1rem;border:1px solid #cbd5e1;border-radius:12px;background:#fff;color:#0f172a;outline:0;transition:border-color .15s,box-shadow .15s}
     .input::placeholder{color:#9aa6b2}
-    .input:focus{border-color: var(--ocean-500); box-shadow: 0 0 0 4px rgba(14,165,233,.18);}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; width:100%;
-      padding:12px 16px; border:none; border-radius:12px;
-      background:linear-gradient(180deg, var(--ocean-500), var(--ocean-700));
-      color:#fff; font-weight:600; font-size:1rem; cursor:pointer;
-      box-shadow:0 8px 18px rgba(14,116,144,.28);
-      transition: transform .05s ease, filter .15s ease, box-shadow .15s ease;
-    }
-    .btn:hover{filter:brightness(1.05); box-shadow:0 10px 22px rgba(14,116,144,.32)}
+    .input:focus{border-color:#0ea5e9;box-shadow:0 0 0 4px rgba(14,165,233,.18)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(180deg,#0ea5e9,#0e7490);color:#fff;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 8px 18px rgba(14,116,144,.28);transition:transform .05s,filter .15s,box-shadow .15s}
+    .btn:hover{filter:brightness(1.05);box-shadow:0 10px 22px rgba(14,116,144,.32)}
     .btn:active{transform:translateY(1px)}
-    .btn[disabled]{opacity:.6; cursor:not-allowed; box-shadow:none; filter:none}
-    .fineprint{font-size:.82rem; color:var(--ink-500);}
-    .error{font-size:.86rem; color:#b91c1c; display:none;}
-    .notice{
-      display:none; margin-top:6px; padding:10px 12px; border-radius:12px;
-      background:#ecfeff; border:1px solid #bae6fd; color:#075985; font-size:.92rem;
-    }
+    .btn[disabled]{opacity:.6;cursor:not-allowed;box-shadow:none;filter:none}
+    .fineprint{font-size:.82rem;color:#64748b}
+    .error{font-size:.86rem;color:#b91c1c;display:none}
+    .notice{display:none;margin-top:6px;padding:10px 12px;border-radius:12px;background:#ecfeff;border:1px solid #bae6fd;color:#075985;font-size:.92rem}
   </style>
 </head>
 <body>
@@ -74,59 +47,61 @@
     <header class="auth-header">
       <div class="brand" aria-hidden="true">
         <span class="dot"></span>
-        <span style="font-weight:700; letter-spacing:.3px;">VrijePlek</span>
+        <span style="font-weight:700;letter-spacing:.3px">VrijePlek</span>
       </div>
       <h1 id="registertitle" class="auth-title">Account aanmaken</h1>
       <p class="auth-sub">Vul je bedrijfsgegevens in. We sturen je een bevestigingsmail.</p>
     </header>
 
     <section class="auth-card" aria-label="Registratieformulier">
-      <form id="registerForm" method="post" action="/api/register" novalidate>
+      <form id="aanmeldenForm" method="post" action="/api/business-create" novalidate>
         <div class="field">
           <label for="company">Bedrijfsnaam</label>
-          <input class="input" id="company" name="company" type="text" placeholder="Jouw zaak bv. 'VrijePlek BV'" required />
+          <input class="input" id="company" name="company" type="text" placeholder="Jouw zaak bv. 'VrijePlek BV'" required>
         </div>
 
         <div class="field">
           <label for="vat">BTW-nummer (BE)</label>
-          <input class="input" id="vat" name="vat" type="text" placeholder="BE0123456789" required />
-          <small class="fineprint">Formaat: <code>BE0123456789</code> (BE + 10 cijfers)</small>
-          <p id="vatmsg" class="error">Ongeldig btw-nummer. Gebruik "BE" gevolgd door 10 cijfers.</p>
+          <input class="input" id="vat" name="vat" type="text" placeholder="BE0123456789" required>
+          <small class="fineprint">Formaat: BE0123456789</small>
+          <p id="vatmsg" class="error">Ongeldig btw-nummer. Gebruik BE + 10 cijfers.</p>
         </div>
 
         <div class="grid-2">
           <div class="field">
             <label for="voornaam">Voornaam</label>
-            <input class="input" id="voornaam" name="first_name" type="text" autocomplete="given-name" placeholder="Voornaam" required />
+            <input class="input" id="voornaam" name="first_name" type="text" autocomplete="given-name" placeholder="Voornaam" required>
           </div>
           <div class="field">
             <label for="achternaam">Achternaam</label>
-            <input class="input" id="achternaam" name="last_name" type="text" autocomplete="family-name" placeholder="Achternaam" required />
+            <input class="input" id="achternaam" name="last_name" type="text" autocomplete="family-name" placeholder="Achternaam" required>
           </div>
         </div>
 
         <div class="field">
           <label for="email">E-mailadres</label>
-          <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jij@bedrijf.be" required />
+          <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jij@bedrijf.be" required>
         </div>
 
         <div class="grid-2">
           <div class="field">
             <label for="password">Wachtwoord</label>
-            <input class="input" id="password" name="password" type="password" autocomplete="new-password" placeholder="Min. 8 tekens" minlength="8" required />
+            <input class="input" id="password" name="password" type="password" autocomplete="new-password" placeholder="Min. 8 tekens" minlength="8" required>
           </div>
           <div class="field">
             <label for="confirm">Herhaal wachtwoord</label>
-            <input class="input" id="confirm" name="confirm_password" type="password" autocomplete="new-password" placeholder="Opnieuw" minlength="8" required />
+            <input class="input" id="confirm" name="confirm_password" type="password" autocomplete="new-password" placeholder="Opnieuw" minlength="8" required>
           </div>
         </div>
         <p id="pwmsg" class="error">Wachtwoorden komen niet overeen.</p>
 
-        <label style="display:flex; gap:10px; align-items:flex-start;">
-          <input id="agree" type="checkbox" style="margin-top:3px" />
+        <label style="display:flex;gap:10px;align-items:flex-start">
+          <input id="agree" type="checkbox" style="margin-top:3px">
           <span class="fineprint">
-            Ik ga akkoord met de <a class="link" href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a>
-            en de <a class="link" href="/privacy" target="_blank" rel="noopener">privacyverklaring</a>.
+            Ik ga akkoord met de
+            <a class="link" href="/voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a>
+            en de
+            <a class="link" href="/privacy.html" target="_blank" rel="noopener">privacyverklaring</a>.
           </span>
         </label>
 
@@ -136,9 +111,9 @@
           Als dit e-mailadres en btw-nummer geldig zijn, is er zojuist een bevestigingsmail verstuurd. Klik op de link in die e-mail om je account te activeren.
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
           <span class="fineprint">Heb je al een account?</span>
-          <a class="link" href="/login" style="color:var(--ocean-700); text-decoration:none;">Inloggen</a>
+          <a class="link" href="/login.html" style="color:#0e7490;text-decoration:none">Inloggen</a>
         </div>
       </form>
     </section>
@@ -146,7 +121,7 @@
 
   <script>
     (function(){
-      const form = document.getElementById('registerForm');
+      const form = document.getElementById('aanmeldenForm');
       const pass = document.getElementById('password');
       const confirm = document.getElementById('confirm');
       const pwmsg = document.getElementById('pwmsg');
@@ -155,60 +130,51 @@
       const notice = document.getElementById('notice');
       const vat = document.getElementById('vat');
       const vatmsg = document.getElementById('vatmsg');
-
-      // Simpele BE VAT check: "BE" + 10 cijfers
       const beVatRegex = /^BE\d{10}$/i;
 
       function validate() {
         const pwOk = pass.value.length >= 8 && pass.value === confirm.value;
         pwmsg.style.display = pwOk ? 'none' : 'block';
-
         const vatOk = beVatRegex.test(vat.value.replace(/\s+/g,''));
         vatmsg.style.display = vatOk ? 'none' : 'block';
-
         submit.disabled = !(pwOk && vatOk && agree.checked && form.checkValidity());
       }
 
       pass.addEventListener('input', validate);
       confirm.addEventListener('input', validate);
-      vat.addEventListener('input', (e)=>{ e.target.value = e.target.value.toUpperCase(); validate(); });
+      vat.addEventListener('input', e => { e.target.value = e.target.value.toUpperCase(); validate(); });
       agree.addEventListener('change', validate);
       form.addEventListener('input', validate);
 
-      form.addEventListener('submit', (e) => {
-        // Laat je eigen submit doorgaan; toon meteen notice
-        setTimeout(()=>{ notice.style.display='block'; }, 0);
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        validate();
+        if (submit.disabled) return;
+        notice.style.display = 'block';
+
+        const payload = {
+          company: document.getElementById('company').value.trim(),
+          vat: vat.value.replace(/\s+/g,'').toUpperCase(),
+          first_name: document.getElementById('voornaam').value.trim(),
+          last_name: document.getElementById('achternaam').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          password: pass.value
+        };
+
+        try {
+          const resp = await fetch('/api/business-create', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(payload)
+          });
+          const j = await resp.json().catch(()=>({}));
+          if (!resp.ok || j.ok === false) { alert(j.error || 'Er ging iets mis'); return; }
+          window.location.href = '/bevestiging.html';
+        } catch { alert('Netwerkfout'); }
       });
 
       validate();
     })();
   </script>
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('#aanmeldenForm'); // pas aan naar jouw form id
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    const payload = { name: data.name || data.naam || "", email: data.email || "", vat: data.vat || data.btw || "" };
-
-    const resp = await fetch('/api/business-create', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-    const j = await resp.json().catch(()=>({}));
-
-    if (!resp.ok || j.ok === false) { alert(j.error || 'Er ging iets mis'); return; }
-    window.location.href = '/bevestiging.html'; // << belangrijk
-  });
-});
-</script>
-<script>
-document.querySelectorAll('.cta-row .btn').forEach(b=>{
-  if(!b.textContent.trim()) b.remove();
-});
-</script>
-
 </body>
 </html>
