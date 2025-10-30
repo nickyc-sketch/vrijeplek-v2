@@ -21,11 +21,9 @@ export const handler = async (event) => {
 
   if (!email || !password) {
     return json(400, { error: 'missing_email_or_password' });
-    const redirect = 'https://vrijeplekv2.netlify.app/geactiveerd.html';
+    
   }
-
-  // TEST-omgeving: redirect na mailklik naar je testpagina
-  const redirect = 'https://vrijeplekv2.netlify.app/bevestigen.html';
+const redirect = 'https://vrijeplekv2.netlify.app/geactiveerd.html';
 
   try {
     const supa = getClient();
