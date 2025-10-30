@@ -1,4 +1,4 @@
-const redirect = 'https://vrijeplekv2.netlify.app/geactiveerd.html';
+
 import { getClient, json } from './_lib/db.js';
 
 export const handler = async (event) => {
@@ -21,6 +21,7 @@ export const handler = async (event) => {
 
   if (!email || !password) {
     return json(400, { error: 'missing_email_or_password' });
+    const redirect = 'https://vrijeplekv2.netlify.app/geactiveerd.html';
   }
 
   // TEST-omgeving: redirect na mailklik naar je testpagina
