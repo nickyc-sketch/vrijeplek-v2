@@ -1,180 +1,69 @@
-<!doctype html>
-<html lang="nl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Account aanmaken — Vrijeplek</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=14">
-  <style>
-    html,body{height:100%}
-    body{
-      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;
-      background:
-        radial-gradient(1200px 800px at 80% -10%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(1000px 600px at 10% 110%, rgba(255,255,255,.06), transparent 60%),
-        linear-gradient(135deg,#0c4a6e,#0e7490 55%,#0ea5e9);
-      display:grid;place-items:center;padding:24px
-    }
-    .auth-wrap{width:100%;max-width:560px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;box-shadow:0 12px 40px rgba(2,12,27,.14);overflow:hidden}
-    .auth-header{padding:28px 28px 0;color:#fff}
-    .brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-    .brand .dot{width:12px;height:12px;border-radius:999px;background:#7dd3fc;box-shadow:0 0 0 4px rgba(125,211,252,.25)}
-    .auth-title{margin:0;font-size:1.5rem;line-height:1.2;font-weight:700;color:#fff}
-    .auth-sub{margin:6px 0 0;font-size:.95rem;color:rgba(255,255,255,.9)}
-    .auth-card{background:#fff;margin:20px;padding:22px;border-radius:16px;border:1px solid #cbd5e1;box-shadow:0 6px 24px rgba(2,12,27,.06)}
-    form{display:grid;gap:14px;margin-top:6px}
-    .grid-2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
-    @media (max-width:560px){.grid-2{grid-template-columns:1fr}}
-    .field{display:grid;gap:8px}
-    label{font-size:.9rem;color:#334155}
-    .input{width:100%;padding:12px 14px;font-size:1rem;border:1px solid #cbd5e1;border-radius:12px;background:#fff;color:#0f172a;outline:0;transition:border-color .15s,box-shadow .15s}
-    .input::placeholder{color:#9aa6b2}
-    .input:focus{border-color:#0ea5e9;box-shadow:0 0 0 4px rgba(14,165,233,.18)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(180deg,#0ea5e9,#0e7490);color:#fff;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 8px 18px rgba(14,116,144,.28);transition:transform .05s,filter .15s,box-shadow .15s}
-    .btn:hover{filter:brightness(1.05);box-shadow:0 10px 22px rgba(14,116,144,.32)}
-    .btn:active{transform:translateY(1px)}
-    .btn[disabled]{opacity:.6;cursor:not-allowed;box-shadow:none;filter:none}
-    .fineprint{font-size:.82rem;color:#64748b}
-    .error{font-size:.86rem;color:#b91c1c;display:none}
-    .notice{display:none;margin-top:6px;padding:10px 12px;border-radius:12px;background:#ecfeff;border:1px solid #bae6fd;color:#075985;font-size:.92rem}
-  </style>
-</head>
-<body>
-  <main class="auth-wrap" role="main" aria-labelledby="registertitle">
-    <header class="auth-header">
-      <div class="brand" aria-hidden="true">
-        <span class="dot"></span>
-        <span style="font-weight:700;letter-spacing:.3px">VrijePlek</span>
-      </div>
-      <h1 id="registertitle" class="auth-title">Account aanmaken</h1>
-      <p class="auth-sub">Vul je bedrijfsgegevens in. We sturen je een bevestigingsmail.</p>
-    </header>
+<!doctype html><html lang="nl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aanmelden – Vrijeplek</title>
+<link rel="stylesheet" href="/styles.css?v=14">
+</head><body>
+  <main class="section"><div class="container" style="max-width:680px">
+    <h1>Account aanmaken</h1>
+    <form id="form-aanmelden">
+      <input name="full_name" type="text" placeholder="Naam">
+      <input name="email" type="email" placeholder="E-mail" required>
+      <input name="password" type="password" placeholder="Wachtwoord" required>
+      <button type="submit">Account aanmaken</button>
+    </form>
 
-    <section class="auth-card" aria-label="Registratieformulier">
-      <form id="aanmeldenForm" method="post" action="/api/business-create" novalidate>
-        <div class="field">
-          <label for="company">Bedrijfsnaam</label>
-          <input class="input" id="company" name="company" type="text" placeholder="Jouw zaak bv. 'VrijePlek BV'" required>
-        </div>
+    <div id="status" style="margin-top:16px; display:none"></div>
 
-        <div class="field">
-          <label for="vat">BTW-nummer (BE)</label>
-          <input class="input" id="vat" name="vat" type="text" placeholder="BE0123456789" required>
-          <small class="fineprint">Formaat: BE0123456789</small>
-          <p id="vatmsg" class="error">Ongeldig btw-nummer. Gebruik BE + 10 cijfers.</p>
-        </div>
+    <div id="resend" style="margin-top:16px; display:none">
+      <button id="resend-btn" type="button">Bevestigingsmail opnieuw sturen</button>
+      <a class="btn" href="/login.html" style="margin-left:8px">Naar inloggen</a>
+    </div>
+  </div></main>
 
-        <div class="grid-2">
-          <div class="field">
-            <label for="voornaam">Voornaam</label>
-            <input class="input" id="voornaam" name="first_name" type="text" autocomplete="given-name" placeholder="Voornaam" required>
-          </div>
-          <div class="field">
-            <label for="achternaam">Achternaam</label>
-            <input class="input" id="achternaam" name="last_name" type="text" autocomplete="family-name" placeholder="Achternaam" required>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="email">E-mailadres</label>
-          <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jij@bedrijf.be" required>
-        </div>
-
-        <div class="grid-2">
-          <div class="field">
-            <label for="password">Wachtwoord</label>
-            <input class="input" id="password" name="password" type="password" autocomplete="new-password" placeholder="Min. 8 tekens" minlength="8" required>
-          </div>
-          <div class="field">
-            <label for="confirm">Herhaal wachtwoord</label>
-            <input class="input" id="confirm" name="confirm_password" type="password" autocomplete="new-password" placeholder="Opnieuw" minlength="8" required>
-          </div>
-        </div>
-        <p id="pwmsg" class="error">Wachtwoorden komen niet overeen.</p>
-
-        <label style="display:flex;gap:10px;align-items:flex-start">
-          <input id="agree" type="checkbox" style="margin-top:3px">
-          <span class="fineprint">
-            Ik ga akkoord met de
-            <a class="link" href="/voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a>
-            en de
-            <a class="link" href="/privacy.html" target="_blank" rel="noopener">privacyverklaring</a>.
-          </span>
-        </label>
-
-        <button id="submitBtn" class="btn" type="submit" disabled>Account aanmaken</button>
-
-        <div id="notice" class="notice" role="status" aria-live="polite">
-          Als dit e-mailadres en btw-nummer geldig zijn, is er zojuist een bevestigingsmail verstuurd. Klik op de link in die e-mail om je account te activeren.
-        </div>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-          <span class="fineprint">Heb je al een account?</span>
-          <a class="link" href="/login.html" style="color:#0e7490;text-decoration:none">Inloggen</a>
-        </div>
-      </form>
-    </section>
-  </main>
-
+  <!-- alleen deze 2 scripts -->
+  <script src="/scripts/client.js"></script>
   <script>
-    (function(){
-      const form = document.getElementById('aanmeldenForm');
-      const pass = document.getElementById('password');
-      const confirm = document.getElementById('confirm');
-      const pwmsg = document.getElementById('pwmsg');
-      const agree = document.getElementById('agree');
-      const submit = document.getElementById('submitBtn');
-      const notice = document.getElementById('notice');
-      const vat = document.getElementById('vat');
-      const vatmsg = document.getElementById('vatmsg');
-      const beVatRegex = /^BE\d{10}$/i;
+  document.addEventListener('submit', async (e) => {
+    const f = e.target;
+    if (!f.matches('#form-aanmelden')) return;
+    e.preventDefault();
 
-      function validate() {
-        const pwOk = pass.value.length >= 8 && pass.value === confirm.value;
-        pwmsg.style.display = pwOk ? 'none' : 'block';
-        const vatOk = beVatRegex.test(vat.value.replace(/\s+/g,''));
-        vatmsg.style.display = vatOk ? 'none' : 'block';
-        submit.disabled = !(pwOk && vatOk && agree.checked && form.checkValidity());
-      }
+    const email = f.email.value.trim();
+    const body = {
+      email,
+      password: f.password.value,
+      full_name: f.full_name?.value?.trim() || null
+    };
 
-      pass.addEventListener('input', validate);
-      confirm.addEventListener('input', validate);
-      vat.addEventListener('input', e => { e.target.value = e.target.value.toUpperCase(); validate(); });
-      agree.addEventListener('change', validate);
-      form.addEventListener('input', validate);
+    const res = await fetch('/.netlify/functions/signup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const j = await res.json();
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        validate();
-        if (submit.disabled) return;
-        notice.style.display = 'block';
+    const status = document.getElementById('status');
+    const resendWrap = document.getElementById('resend');
+    if (!res.ok) {
+      status.style.display = 'block';
+      status.textContent = j.error || 'Er ging iets mis bij aanmelden.';
+      resendWrap.style.display = 'none';
+      return;
+    }
+    // hier ben je klaar: mail is verstuurd door Supabase
+    status.style.display = 'block';
+    status.textContent = 'We hebben je een bevestigingsmail gestuurd. Klik op de link in die mail om je account te activeren.';
+    resendWrap.style.display = 'block';
 
-        const payload = {
-          company: document.getElementById('company').value.trim(),
-          vat: vat.value.replace(/\s+/g,'').toUpperCase(),
-          first_name: document.getElementById('voornaam').value.trim(),
-          last_name: document.getElementById('achternaam').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          password: pass.value
-        };
-
-        try {
-          const resp = await fetch('/api/business-create', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(payload)
-          });
-          const j = await resp.json().catch(()=>({}));
-          if (!resp.ok || j.ok === false) { alert(j.error || 'Er ging iets mis'); return; }
-          window.location.href = '/bevestiging.html';
-        } catch { alert('Netwerkfout'); }
+    // "opnieuw sturen" knop
+    document.getElementById('resend-btn').onclick = async () => {
+      const r = await fetch('/.netlify/functions/resend-confirmation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
       });
-
-      validate();
-    })();
+      const rr = await r.json();
+      alert(r.ok ? 'Mail opnieuw verzonden.' : (rr.error || 'Kon niet opnieuw versturen.'));
+    };
+  });
   </script>
-</body>
-</html>
+</body></html>
