@@ -6,8 +6,8 @@ export const handler = async (event) => {
   const { email, password, full_name } = payload;
   if (!email || !password) return json(400, { error: 'missing_email_or_password' });
 
-  const origin = new URL(event.rawUrl).origin;
-  const redirect = `${origin}/bevestigen.html`;
+  // Hardcode naar de productie-URL zodat de mail altijd juist is
+  const redirect = `https://www.vrijeplek.be/bevestigen.html`;
 
   const supa = getClient();
   const { data, error } = await supa.auth.signUp({
