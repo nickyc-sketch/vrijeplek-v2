@@ -1,0 +1,3 @@
+[build]
+command = ""      # geen build command laten uitvoeren
+publish = "vrijeplek_v2"  # map met de statische site
